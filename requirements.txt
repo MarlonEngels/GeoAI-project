@@ -1,0 +1,9 @@
+pandas
+numpy
+pydeck
+geopandas
+movingpandas
+streamlit
+leafmap
+dash
+dash-leaflet
