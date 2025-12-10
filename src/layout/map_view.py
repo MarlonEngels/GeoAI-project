@@ -1,0 +1,79 @@
+from dash import html, dcc
+import dash_leaflet as dl
+from config import UPDATE_INTERVAL_MS, CENTER, ZOOM
+
+empty_geojson = {"type": "FeatureCollection", "features": []}
+
+layout = html.Div(
+    style={"display": "flex", "height": "100vh", "fontFamily": "Segoe UI, Arial"},
+    children=[
+        # Sidebar
+        html.Div(
+            style={
+                "width": "300px",
+                "padding": "16px",
+                "boxShadow": "2px 0 6px rgba(0,0,0,0.1)",
+                "backgroundColor": "#f8f9fb",
+            },
+            children=[
+                html.H3("Layers & Controls", style={"marginTop": 0}),
+                dcc.Checklist(
+                    id="layer-checklist",
+                    options=[
+                        {"label": "AIS Ships (real-time)", "value": "ais"},
+                        {"label": "MET Weather (air, wind, humidity...)", "value": "temp"},
+                    ],
+                    value=["ais", "temp"],
+                    inputStyle={"marginRight": "8px"},
+                ),
+                html.Hr(),
+                html.Div(
+                    id="status",
+                    children="Waiting for first update...",
+                    style={"whiteSpace": "pre-wrap"},
+                ),
+                html.Hr(),
+                html.Div(
+                    "Update interval: 15 seconds",
+                    style={"fontSize": "12px", "color": "#555"},
+                ),
+                dcc.Interval(
+                    id="interval", interval=UPDATE_INTERVAL_MS, n_intervals=0
+                ),
+                dcc.Store(id="ais-store", data=empty_geojson),
+                dcc.Store(id="temp-store", data=empty_geojson),
+            ],
+        ),
+        # Map
+        html.Div(
+            style={"flex": "1 1 auto"},
+            children=[
+                dl.Map(
+                    id="map",
+                    center=CENTER,
+                    zoom=ZOOM,
+                    style={"width": "100%", "height": "100%"},
+                    children=[
+                        dl.TileLayer(),
+
+                        # AIS ship layer (existing)
+                        dl.GeoJSON(id="ais-geojson", data=empty_geojson),
+
+                        # Weather (MET) points layer
+                        dl.GeoJSON(
+                            id="temp-geojson",
+                            data=empty_geojson,
+                            options=dict(
+                                pointToLayer="                                      function(feature, latlng) { \
+                                      var p = feature.properties; \
+                                      var popup = '<b>📍 Weather Station</b><br>🌡️ ' + p.air_temperature + ' °C<br>💨 ' + p.wind_speed + ' m/s'; \
+                                      return L.circleMarker(latlng, {radius:6, fillColor:'orange', color:'black', weight:1, opacity:1, fillOpacity:0.85}).bindPopup(popup); \
+                                  }"
+                            ),
+                        ),
+                    ],
+                )
+            ],
+        ),
+    ],
+)

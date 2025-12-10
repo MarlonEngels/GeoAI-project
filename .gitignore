@@ -1,4 +1,6 @@
-# Ignore virtual environment
 .venv/
 .env
 .git/
+data/
+
+__pycache__/
