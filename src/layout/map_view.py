@@ -1,8 +1,35 @@
 from dash import html, dcc
 import dash_leaflet as dl
+from dash_extensions.javascript import assign
+import textwrap3
 from config import UPDATE_INTERVAL_MS, CENTER, ZOOM
 
 empty_geojson = {"type": "FeatureCollection", "features": []}
+
+WEATHER_POINT_TO_LAYER = assign(
+    """
+    function(feature, latlng, context) {
+        const p = feature.properties || {};
+        const airTemp = (p.air_temperature !== undefined && p.air_temperature !== null) ? p.air_temperature : "?";
+        const windSpeed = (p.wind_speed !== undefined && p.wind_speed !== null) ? p.wind_speed : "?";
+        const relHum = (p.relative_humidity !== undefined && p.relative_humidity !== null) ? p.relative_humidity : "?";
+
+        var popup = "<b>Weather station</b><br>" +
+            "Temp: " + airTemp + " °C<br>" +
+            "Wind: " + windSpeed + " m/s<br>" +
+            "Humidity: " + relHum + " %";
+
+        return L.circleMarker(latlng, {
+            radius: 6,
+            fillColor: "orange",
+            color: "black",
+            weight: 1,
+            opacity: 1,
+            fillOpacity: 0.85
+        }).bindPopup(popup);
+    }
+    """
+)
 
 layout = html.Div(
     style={"display": "flex", "height": "100vh", "fontFamily": "Segoe UI, Arial"},
@@ -64,11 +91,7 @@ layout = html.Div(
                             id="temp-geojson",
                             data=empty_geojson,
                             options=dict(
-                                pointToLayer="                                      function(feature, latlng) { \
-                                      var p = feature.properties; \
-                                      var popup = '<b>📍 Weather Station</b><br>🌡️ ' + p.air_temperature + ' °C<br>💨 ' + p.wind_speed + ' m/s'; \
-                                      return L.circleMarker(latlng, {radius:6, fillColor:'orange', color:'black', weight:1, opacity:1, fillOpacity:0.85}).bindPopup(popup); \
-                                  }"
+                                pointToLayer=WEATHER_POINT_TO_LAYER
                             ),
                         ),
                     ],

@@ -21,7 +21,7 @@ def register_callbacks(app):
     def update_ais(n_intervals, layers, previous_store):
         """Fetch AIS when layer enabled; keep previous data on error; clear map if layer disabled."""
         if "ais" not in (layers or []):
-            return {}, previous_store, f"AIS layer disabled (interval #{n_intervals})"
+            return EMPTY_GEOJSON, previous_store or EMPTY_GEOJSON, f"AIS layer disabled (interval #{n_intervals})"
 
         try:
             geojson = fetch_ais_geojson()

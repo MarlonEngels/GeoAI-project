@@ -7,3 +7,5 @@ streamlit
 leafmap
 dash
 dash-leaflet
+kystdatahuset-python-lib
+textwrap3
