@@ -1,7 +1,7 @@
 from dash import Output, Input, State
 from datetime import datetime
 from config import OSLO_INFO_POINTS
-from src.api.ais_api import fetch_ais_geojson
+from src.api.ais_api import fetch_ais_geojson, current_position_feature_collection
 from src.api.weather_api import fetch_weather_geojson
 
 EMPTY_GEOJSON = {"type": "FeatureCollection", "features": []}
@@ -19,21 +19,50 @@ def register_callbacks(app):
         State("ais-store", "data"),
     )
     def update_ais(n_intervals, layers, previous_store):
-        """Fetch AIS when layer enabled; keep previous data on error; clear map if layer disabled."""
+        """
+        Fetch AIS when layer enabled; show current positions as points on the map;
+        keep original LineString data in ais-store; keep previous data on error;
+        clear map if layer disabled.
+        """
         if "ais" not in (layers or []):
-            return EMPTY_GEOJSON, previous_store or EMPTY_GEOJSON, f"AIS layer disabled (interval #{n_intervals})"
+            # Layer off: clear map, keep whatever was in the store
+            return (
+                EMPTY_GEOJSON,
+                previous_store or EMPTY_GEOJSON,
+                f"AIS layer disabled (interval #{n_intervals})",
+            )
 
         try:
-            geojson = fetch_ais_geojson()
-            features = geojson.get("features", [])
-            count = len(features)
+            # 1) Fetch raw LineString data from API
+            raw_geojson = fetch_ais_geojson()
+
+            # 2) Convert to current-position Point features for display
+            points_geojson = current_position_feature_collection(raw_geojson)
+
+            count = len(points_geojson.get("features", []))
             ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S UTC")
-            status = f"AIS updated: {count} features — {ts} (interval #{n_intervals})"
-            return geojson, geojson, status
+
+            status = (
+                f"AIS updated: {count} vessels (current positions) — "
+                f"{ts} (interval #{n_intervals})"
+            )
+
+            # Map uses points; store keeps raw lines for later use (tracks, density, etc.)
+            return points_geojson, raw_geojson, status
+
         except Exception as e:
-            err_msg = f"Error fetching AIS: {e!s} — showing last successful data (interval #{n_intervals})"
-            fallback = previous_store or {"type": "FeatureCollection", "features": []}
-            return fallback, previous_store or fallback, err_msg
+            err_msg = (
+                f"Error fetching AIS: {e!s} — showing last successful data "
+                f"(interval #{n_intervals})"
+            )
+
+            # On error: use previous_store (raw lines) if available,
+            # and compute points from that so the map still shows something.
+            if previous_store:
+                fallback_points = current_position_feature_collection(previous_store)
+                return fallback_points, previous_store, err_msg
+            else:
+                return EMPTY_GEOJSON, EMPTY_GEOJSON, err_msg
 
     # ---- Weather (MET) callback ----
     @app.callback(
