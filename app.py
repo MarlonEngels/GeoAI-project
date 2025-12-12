@@ -1,8 +1,8 @@
-import dash
+from dash import Dash
 from src.layout.map_view import layout
 from src.callbacks.map_callbacks import register_callbacks
 
-app = dash.Dash(__name__)
+app = Dash(__name__)
 app.title = "Oslo Fjord — AIS (Dash + dash-leaflet)"
 app.layout = layout
 
