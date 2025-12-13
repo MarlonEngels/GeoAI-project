@@ -17,7 +17,7 @@ def get_weather_data(lat, lon):
             print(f"[Weather API] No timeseries for ({lat},{lon})")
             return None
         details = timeseries[0]["data"]["instant"]["details"]
-        print(f"[Weather API] Fetched data for ({lat},{lon}): {details}")
+        # print(f"[Weather API] Fetched data for ({lat},{lon}): {details}")
         return {"lat": lat, "lon": lon, **details}
     except Exception as e:
         print(f"[Weather API] Error for ({lat}, {lon}): {e}")

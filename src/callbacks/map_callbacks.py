@@ -96,7 +96,7 @@ def register_callbacks(app):
     )
     def store_drawn_geometry(geojson):
         if not geojson or not geojson.get("features"):
-            return PreventUpdate
+            return None
 
         feature = geojson["features"][-1]
         geom = feature.get("geometry", {})
@@ -154,26 +154,33 @@ def register_callbacks(app):
         if end <= start:
             return EMPTY_GEOJSON, {"t1": 1, "t2": 2, "t3": 3}, "End must be after start."
 
-        bbox = draw_data["bbox"]        # still used for grid sizing/origin
-        poly = draw_data["polygon"]     # GeoJSON geometry (Polygon)
+        bbox = draw_data["bbox"]
+        poly = draw_data["polygon"]
 
         try:
-            # NOTE: within-geom-time expects geom, not bbox
             hist = fetch_positions_within_geom_time(poly, start, end, min_speed=0.0)
 
-            pts = extract_lon_lat_points(hist)      # all points returned (should already be within geom)
-            # optional safety filter (keep it if you want)
+            pts = extract_lon_lat_points(hist)
             pts = points_in_polygon(pts, poly)
 
             grid = density_grid_geojson(pts, bbox, float(cell_m or 500))
 
-            max_c = 0
-            for f in grid.get("features", []):
-                max_c = max(max_c, int(f["properties"]["count"]))
+            # --- Option A: quantile thresholds (always gives a spread) ---
+            counts = sorted(int(f["properties"]["count"]) for f in grid.get("features", []))
+            if not counts:
+                return EMPTY_GEOJSON, {"t1": 1, "t2": 2, "t3": 3}, "No density cells (no AIS points in area/time)."
 
-            t1 = max(1, max_c // 4)
-            t2 = max(2, max_c // 2)
-            t3 = max(3, (3 * max_c) // 4)
+            def q(p: float) -> int:
+                idx = int(p * (len(counts) - 1))
+                return counts[idx]
+
+            t1 = q(0.25)
+            t2 = q(0.50)
+            t3 = q(0.75)
+
+            t1 = max(1, t1)
+            t2 = max(t1 + 1, t2)
+            t3 = max(t2 + 1, t3)
 
             msg = f"Computed density: {len(pts)} AIS points inside area, {len(grid['features'])} grid cells."
             return grid, {"t1": t1, "t2": t2, "t3": t3}, msg
@@ -181,11 +188,12 @@ def register_callbacks(app):
         except Exception as e:
             return EMPTY_GEOJSON, {"t1": 1, "t2": 2, "t3": 3}, f"Error: {e!s}"
         
-    # @app.callback(
-    #     Output("density-geojson", "data"),
-    #     Input("draw-geom-store", "data"),
-    # )
-    # def clear_density_when_no_shape(draw_data):
-    #     if not draw_data:
-    #         return EMPTY_GEOJSON
-    #     raise PreventUpdate
+    @app.callback(
+        Output("density-geojson", "data", allow_duplicate=True),
+        Input("draw-geom-store", "data"),
+        prevent_initial_call=True,
+    )
+    def clear_density_when_no_shape(draw_data):
+        if not draw_data:
+            return EMPTY_GEOJSON
+        raise PreventUpdate
