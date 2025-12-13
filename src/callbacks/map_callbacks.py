@@ -1,8 +1,11 @@
 from dash import Output, Input, State
-from datetime import datetime
+from dash.exceptions import PreventUpdate
+from datetime import datetime, timezone
 from config import OSLO_INFO_POINTS
 from src.api.ais_api import fetch_ais_geojson, current_position_feature_collection
 from src.api.weather_api import fetch_weather_geojson
+from src.utils.density import density_grid_geojson, points_in_polygon, extract_lon_lat_points
+from src.api.ais_hist_api import fetch_positions_within_geom_time
 
 EMPTY_GEOJSON = {"type": "FeatureCollection", "features": []}
 
@@ -84,3 +87,105 @@ def register_callbacks(app):
         except Exception as e:
             print(f"[Weather Callback] Error: {e}")
             return previous_store or EMPTY_GEOJSON, previous_store or EMPTY_GEOJSON
+
+
+    # ---- Draw control callback ----
+    @app.callback(
+        Output("draw-geom-store", "data"),
+        Input("edit-control", "geojson"),
+    )
+    def store_drawn_geometry(geojson):
+        if not geojson or not geojson.get("features"):
+            return PreventUpdate
+
+        feature = geojson["features"][-1]
+        geom = feature.get("geometry", {})
+        if geom.get("type") != "Polygon":
+            raise PreventUpdate
+
+        ring = geom.get("coordinates", [[]])[0]
+        if not ring:
+            raise PreventUpdate
+
+        lons = [pt[0] for pt in ring]
+        lats = [pt[1] for pt in ring]
+        bbox_str = f"{min(lons)},{min(lats)},{max(lons)},{max(lats)}"
+
+        return {"polygon": geom, "bbox": bbox_str}
+
+
+    @app.callback(
+        Output("density-geojson", "data"),
+        Output("density-geojson", "hideout"),
+        Output("dens-status", "children"),
+        Input("dens-run", "n_clicks"),
+        State("draw-geom-store", "data"),
+        State("dens-start-date", "date"),
+        State("dens-start-time", "value"),
+        State("dens-end-date", "date"),
+        State("dens-end-time", "value"),
+        State("dens-cell-m", "value"),
+        prevent_initial_call=True,
+    )
+    def compute_density(n_clicks, draw_data, start_date, start_time, end_date, end_time, cell_m):
+        if not draw_data or "bbox" not in draw_data or "polygon" not in draw_data:
+            return EMPTY_GEOJSON, {"t1": 1, "t2": 2, "t3": 3}, "Area cleared — density removed."
+
+        if not start_date or not end_date or not start_time or not end_time:
+            return EMPTY_GEOJSON, {"t1": 1, "t2": 2, "t3": 3}, "Select start/end date and time (UTC)."
+
+        def parse_utc(date_str: str, time_str: str) -> datetime:
+            try:
+                h, m = map(int, time_str.strip().split(":"))
+            except Exception:
+                raise ValueError("Time must be in HH:MM format (e.g., 09:30).")
+            if not (0 <= h <= 23 and 0 <= m <= 59):
+                raise ValueError("Time must be valid (00:00 to 23:59).")
+            return datetime.fromisoformat(date_str).replace(
+                hour=h, minute=m, second=0, microsecond=0, tzinfo=timezone.utc
+            )
+
+        try:
+            start = parse_utc(start_date, start_time)
+            end = parse_utc(end_date, end_time)
+        except Exception as e:
+            return EMPTY_GEOJSON, {"t1": 1, "t2": 2, "t3": 3}, f"Invalid time input: {e}"
+
+        if end <= start:
+            return EMPTY_GEOJSON, {"t1": 1, "t2": 2, "t3": 3}, "End must be after start."
+
+        bbox = draw_data["bbox"]        # still used for grid sizing/origin
+        poly = draw_data["polygon"]     # GeoJSON geometry (Polygon)
+
+        try:
+            # NOTE: within-geom-time expects geom, not bbox
+            hist = fetch_positions_within_geom_time(poly, start, end, min_speed=0.0)
+
+            pts = extract_lon_lat_points(hist)      # all points returned (should already be within geom)
+            # optional safety filter (keep it if you want)
+            pts = points_in_polygon(pts, poly)
+
+            grid = density_grid_geojson(pts, bbox, float(cell_m or 500))
+
+            max_c = 0
+            for f in grid.get("features", []):
+                max_c = max(max_c, int(f["properties"]["count"]))
+
+            t1 = max(1, max_c // 4)
+            t2 = max(2, max_c // 2)
+            t3 = max(3, (3 * max_c) // 4)
+
+            msg = f"Computed density: {len(pts)} AIS points inside area, {len(grid['features'])} grid cells."
+            return grid, {"t1": t1, "t2": t2, "t3": t3}, msg
+
+        except Exception as e:
+            return EMPTY_GEOJSON, {"t1": 1, "t2": 2, "t3": 3}, f"Error: {e!s}"
+        
+    # @app.callback(
+    #     Output("density-geojson", "data"),
+    #     Input("draw-geom-store", "data"),
+    # )
+    # def clear_density_when_no_shape(draw_data):
+    #     if not draw_data:
+    #         return EMPTY_GEOJSON
+    #     raise PreventUpdate

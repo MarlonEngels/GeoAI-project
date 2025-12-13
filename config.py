@@ -6,8 +6,10 @@ ZOOM = 11
 AIS_URL = "https://kystdatahuset.no/ws/api/ais/realtime/geojson"
 UPDATE_INTERVAL_MS = 30000
 
-# MET configuration 
+# AIS historical data API
+AIS_HIST_URL = "https://kystdatahuset.no/ws/api/ais/positions/within-geom-time"
 
+# MET configuration 
 MET_URL = f"https://api.met.no/weatherapi/locationforecast/2.0/compact?lat={{lat}}&lon={{lon}}"
 OSLO_INFO_POINTS = [
   (59.855835354626265,10.760074231292975),

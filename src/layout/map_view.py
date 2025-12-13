@@ -83,6 +83,31 @@ AIS_POINT_TO_LAYER = assign(
     """
 )
 
+DENSITY_STYLE = assign(
+    """
+    function(feature, context) {
+        const c = (feature.properties && feature.properties.count) ? feature.properties.count : 0;
+
+        const h = context.hideout || {};
+        const t1 = h.t1 ?? 1;
+        const t2 = h.t2 ?? 2;
+        const t3 = h.t3 ?? 3;
+
+        let fill = "green";
+        if (c >= t3) fill = "red";
+        else if (c >= t2) fill = "orange";
+        else if (c >= t1) fill = "yellow";
+
+        return {
+            color: "black",
+            weight: 0.5,
+            fillColor: fill,
+            fillOpacity: 0.45
+        };
+    }
+    """
+)
+
 layout = html.Div(
     style={"display": "flex", "height": "100vh", "fontFamily": "Segoe UI, Arial"},
     children=[
@@ -120,30 +145,53 @@ layout = html.Div(
                     id="interval", interval=UPDATE_INTERVAL_MS, n_intervals=0
                 ),
                 
-                html.Hr(),
-                html.H4("Track replay", style={"marginTop": "8px"}),
+                # html.Hr(),
+                # html.H4("Track replay", style={"marginTop": "8px"}),
 
-                html.Label("Time window:"),
-                dcc.Dropdown(
-                    id="track-window-dropdown",
-                    options=[
-                        {"label": "Last 10 minutes", "value": 10},
-                        {"label": "Last 30 minutes", "value": 30},
-                        {"label": "Last 60 minutes", "value": 60},
-                    ],
-                    value=30,
-                    clearable=False,
-                    style={"marginBottom": "8px"},
-                ),
+                # html.Label("Time window:"),
+                # dcc.Dropdown(
+                #     id="track-window-dropdown",
+                #     options=[
+                #         {"label": "Last 10 minutes", "value": 10},
+                #         {"label": "Last 30 minutes", "value": 30},
+                #         {"label": "Last 60 minutes", "value": 60},
+                #     ],
+                #     value=30,
+                #     clearable=False,
+                #     style={"marginBottom": "8px"},
+                # ),
 
                 html.Div(
                     id="track-status",
                     style={"fontSize": "12px", "color": "#555"},
                 ),
                 
+                html.Hr(),
+                html.H4("Traffic density"),
+
+                html.Div("1) Draw a rectangle or polygon on the map.", style={"fontSize": "12px"}),
+
+                html.Label("Start (UTC):"),
+                dcc.DatePickerSingle(id="dens-start-date"),
+                dcc.Input(id="dens-start-time", type="text", value="00:00", placeholder="HH:MM"),
+
+                html.Br(),
+                html.Label("End (UTC):", style={"marginTop": "8px"}),
+                dcc.DatePickerSingle(id="dens-end-date", placeholder="Select an end date"),
+                dcc.Input(id="dens-end-time", type="text", value="01:00", placeholder="HH:MM"),
+
+                html.Br(),
+                html.Label("Grid cell size (meters):", style={"marginTop": "8px"}),
+                dcc.Input(id="dens-cell-m", type="number", value=250, min=50, step=50),
+
+                html.Button("Compute density", id="dens-run", n_clicks=0, style={"marginTop": "10px"}),
+
+                html.Div(id="dens-status", style={"fontSize": "12px", "marginTop": "6px", "color": "#555"}),
+
+                
                 dcc.Store(id="ais-store", data=empty_geojson),
                 dcc.Store(id="temp-store", data=empty_geojson),
-                dcc.Store(id="track-bbox-store", data=None),
+                dcc.Store(id="draw-geom-store", data=None),
                 dcc.Store(id="selected-vessel-store", data=None),
             ],
         ),
@@ -188,11 +236,25 @@ layout = html.Div(
                     options={"style": {"color": "cyan", "weight": 3}},
                 ),
 
-                # Weather (MET) points layer
+                # Weather points layer
                 dl.GeoJSON(
                     id="temp-geojson",
                     data=empty_geojson,
                     options=dict(pointToLayer=WEATHER_POINT_TO_LAYER),
+                ),
+                
+                # Density layer
+                # dl.GeoJSON(
+                #     id="density-geojson",
+                #     data=empty_geojson,
+                #     options=dict(style=DENSITY_STYLE),
+                #     hideout={"t1": 10, "t2": 30, "t3": 60},
+                # ),
+                dl.GeoJSON(
+                    id="density-geojson",
+                    data=empty_geojson,
+                    options=dict(style=DENSITY_STYLE),
+                    hideout={"t1": 10, "t2": 30, "t3": 60},
                 ),
             ],
         )

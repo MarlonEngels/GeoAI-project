@@ -9,3 +9,4 @@ dash
 dash-leaflet
 kystdatahuset-python-lib
 textwrap3
+shapely
