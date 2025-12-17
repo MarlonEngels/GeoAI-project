@@ -1,0 +1,10 @@
+.SingleDatePicker_picker,
+.DateRangePicker_picker,
+.DayPicker_portal,
+.DayPicker__withBorder {
+  z-index: 10000 !important;
+}
+#sidebar {
+  position: relative;
+  z-index: 2000;
+}

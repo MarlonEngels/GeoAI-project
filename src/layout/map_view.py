@@ -168,6 +168,7 @@ layout = html.Div(
     children=[
         # Sidebar
         html.Div(
+            id="sidebar",
             style={
                 "width": "300px",
                 "padding": "16px",
@@ -211,7 +212,7 @@ layout = html.Div(
                 html.Div("1) Draw a rectangle or polygon on the map.", style={"fontSize": "12px"}),
 
                 html.Label("Start (UTC):"),
-                dcc.DatePickerSingle(id="dens-start-date"),
+                dcc.DatePickerSingle(id="dens-start-date", placeholder="Date"),
                 dcc.Input(id="dens-start-time", type="text", value="00:00", placeholder="HH:MM"),
 
                 html.Br(),
