@@ -6,7 +6,6 @@ def points_in_polygon(points, polygon_geom):
     return [(lon, lat) for lon, lat in points if poly.contains(Point(lon, lat))]
 
 def density_grid_geojson(points, bbox_str: str, cell_m: float) -> dict:
-    # bbox to compute grid origin and lon degree scaling
     min_lon, min_lat, max_lon, max_lat = map(float, bbox_str.split(","))
     mid_lat = (min_lat + max_lat) / 2.0
 

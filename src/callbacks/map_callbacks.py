@@ -165,7 +165,6 @@ def register_callbacks(app):
 
             grid = density_grid_geojson(pts, bbox, float(cell_m or 500))
 
-            # --- Option A: quantile thresholds (always gives a spread) ---
             counts = sorted(int(f["properties"]["count"]) for f in grid.get("features", []))
             if not counts:
                 return EMPTY_GEOJSON, {"t1": 1, "t2": 2, "t3": 3}, "No density cells (no AIS points in area/time)."
