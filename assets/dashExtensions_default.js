@@ -46,7 +46,7 @@ window.dashExtensions = Object.assign({}, window.dashExtensions, {
 
                 return L.circleMarker(latlng, {
                     radius: 6,
-                    fillColor: "orange",
+                    fillColor: "red",
                     color: "black",
                     weight: 1,
                     opacity: 1,

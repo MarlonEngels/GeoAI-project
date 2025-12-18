@@ -53,7 +53,7 @@ WEATHER_POINT_TO_LAYER = assign(
 
         return L.circleMarker(latlng, {
             radius: 6,
-            fillColor: "orange",
+            fillColor: "red",
             color: "black",
             weight: 1,
             opacity: 1,
@@ -181,7 +181,7 @@ layout = html.Div(
                     id="layer-checklist",
                     options=[
                         {"label": "AIS Ships (real-time)", "value": "ais"},
-                        {"label": "MET Weather (air, wind, humidity...)", "value": "temp"},
+                        {"label": "MET Weather", "value": "temp"},
                     ],
                     value=["ais", "temp"],
                     inputStyle={"marginRight": "8px"},
@@ -235,7 +235,7 @@ layout = html.Div(
                 dcc.Store(id="selected-vessel-store", data=None),
             ],
         ),
-        # Map
+        
         dl.Map(
             id="map",
             center=CENTER,

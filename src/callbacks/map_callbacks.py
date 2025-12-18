@@ -28,7 +28,6 @@ def register_callbacks(app):
         clear map if layer disabled.
         """
         if "ais" not in (layers or []):
-            # Layer off: clear map, keep whatever was in the store
             return (
                 EMPTY_GEOJSON,
                 previous_store or EMPTY_GEOJSON,
@@ -36,10 +35,8 @@ def register_callbacks(app):
             )
 
         try:
-            # 1) Fetch raw LineString data from API
             raw_geojson = fetch_ais_geojson()
-
-            # 2) Convert to current-position Point features for display
+            
             points_geojson = current_position_feature_collection(raw_geojson)
 
             count = len(points_geojson.get("features", []))
@@ -50,7 +47,6 @@ def register_callbacks(app):
                 f"{ts} (interval #{n_intervals})"
             )
 
-            # Map uses points; store keeps raw lines for later use (tracks, density, etc.)
             return points_geojson, raw_geojson, status
 
         except Exception as e:
@@ -59,8 +55,6 @@ def register_callbacks(app):
                 f"(interval #{n_intervals})"
             )
 
-            # On error: use previous_store (raw lines) if available,
-            # and compute points from that so the map still shows something.
             if previous_store:
                 fallback_points = current_position_feature_collection(previous_store)
                 return fallback_points, previous_store, err_msg
