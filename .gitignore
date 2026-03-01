@@ -3,4 +3,7 @@
 .git/
 data/
 
+src/test-scripts/*
+VISIR-2_v6/
+
 __pycache__/

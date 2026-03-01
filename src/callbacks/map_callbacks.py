@@ -1,13 +1,81 @@
-from dash import Output, Input, State
+from dash import Output, Input, State, ctx
 from dash.exceptions import PreventUpdate
 from datetime import datetime, timezone
-from config import OSLO_INFO_POINTS
 from src.api.ais_api import fetch_ais_geojson, current_position_feature_collection
-from src.api.weather_api import fetch_weather_geojson
+from src.api.weather_api import fetch_weather_geojson_for_points
 from src.utils.density import density_grid_geojson, points_in_polygon, extract_lon_lat_points
 from src.api.ais_hist_api import fetch_positions_within_geom_time
 
 EMPTY_GEOJSON = {"type": "FeatureCollection", "features": []}
+
+
+def _weather_point_id(lat, lon):
+    return f"{float(lat):.6f},{float(lon):.6f}"
+
+
+def _normalize_weather_points(points):
+    normalized = []
+    for point in (points or []):
+        try:
+            lat = float(point["lat"])
+            lon = float(point["lon"])
+        except Exception:
+            continue
+
+        normalized.append(
+            {
+                "id": str(point.get("id") or _weather_point_id(lat, lon)),
+                "lat": lat,
+                "lon": lon,
+            }
+        )
+    return normalized
+
+
+def _extract_marker_points_from_edit_geojson(geojson):
+    points = []
+    for feature in (geojson or {}).get("features", []):
+        geom = feature.get("geometry", {}) or {}
+        if geom.get("type") != "Point":
+            continue
+        coords = geom.get("coordinates") or []
+        if len(coords) < 2:
+            continue
+        lon = float(coords[0])
+        lat = float(coords[1])
+        points.append({"id": _weather_point_id(lat, lon), "lat": lat, "lon": lon})
+    return points
+
+
+def _remove_editcontrol_markers(geojson):
+    geojson = geojson or {"type": "FeatureCollection", "features": []}
+    features = geojson.get("features", []) or []
+    filtered = []
+    removed_any = False
+    for feature in features:
+        geom = (feature or {}).get("geometry", {}) or {}
+        if geom.get("type") == "Point":
+            removed_any = True
+            continue
+        filtered.append(feature)
+    return (
+        {"type": "FeatureCollection", "features": filtered},
+        removed_any,
+    )
+
+
+def _triggered_props_set():
+    triggered_prop_ids = getattr(ctx, "triggered_prop_ids", None)
+    if triggered_prop_ids:
+        return set(triggered_prop_ids.keys())
+
+    triggered = getattr(ctx, "triggered", None) or []
+    props = set()
+    for item in triggered:
+        prop_id = item.get("prop_id")
+        if prop_id:
+            props.add(prop_id)
+    return props
 
 def register_callbacks(app):
     """Attach callbacks to the Dash app instance."""
@@ -43,15 +111,15 @@ def register_callbacks(app):
             ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S UTC")
 
             status = (
-                f"AIS updated: {count} vessels (current positions) — "
-                f"{ts} (interval #{n_intervals})"
+                f"AIS updated: {count} Vessels "
+                f"{ts}\nInterval #{n_intervals}"
             )
 
             return points_geojson, raw_geojson, status
 
         except Exception as e:
             err_msg = (
-                f"Error fetching AIS: {e!s} — showing last successful data "
+                f"Error fetching AIS: {e!s} - showing last successful data "
                 f"(interval #{n_intervals})"
             )
 
@@ -65,23 +133,80 @@ def register_callbacks(app):
     @app.callback(
         Output("temp-geojson", "data"),
         Output("temp-store", "data"),
+        Output("weather-points-store", "data"),
         Input("interval", "n_intervals"),
         Input("layer-checklist", "value"),
+        Input("map", "clickData"),
+        Input("weather-popup-events", "n_events"),
+        State("weather-popup-events", "event"),
         State("temp-store", "data"),
+        State("weather-points-store", "data"),
     )
-    def update_weather(n_intervals, layers, previous_store):
-        if "temp" not in (layers or []):
-            return EMPTY_GEOJSON, previous_store or EMPTY_GEOJSON
+    def update_weather(n_intervals, layers, map_click, popup_n_events, popup_event, previous_store, weather_points):
+        del n_intervals, popup_n_events  # Trigger values only.
+
+        layers = layers or []
+        layer_enabled = "temp" in layers
+        weather_points = _normalize_weather_points(weather_points)
+
+        triggered_props = _triggered_props_set()
+        interval_triggered = "interval.n_intervals" in triggered_props
+        layers_triggered = "layer-checklist.value" in triggered_props
+        map_triggered = "map.clickData" in triggered_props
+        popup_triggered = "weather-popup-events.n_events" in triggered_props
+
+        points_changed = False
+        popup_remove_clicked = False
+
+        if popup_triggered:
+            evt = popup_event or {}
+            target_class = str(evt.get("target.className") or "")
+            remove_id = evt.get("target.dataset.weatherId") or evt.get("detail.weatherId")
+            if "weather-remove-btn" in target_class and remove_id:
+                popup_remove_clicked = True
+                remove_id = str(remove_id)
+                next_points = [p for p in weather_points if p["id"] != remove_id]
+                if len(next_points) != len(weather_points):
+                    weather_points = next_points
+                    points_changed = True
+
+        if map_triggered and not popup_remove_clicked and layer_enabled and map_click:
+            latlng = (map_click or {}).get("latlng")
+            lat = None
+            lon = None
+
+            if isinstance(latlng, dict):
+                lat = latlng.get("lat")
+                lon = latlng.get("lng", latlng.get("lon"))
+            elif isinstance(latlng, (list, tuple)) and len(latlng) >= 2:
+                lat = latlng[0]
+                lon = latlng[1]
+
+            if lat is not None and lon is not None:
+                point_id = _weather_point_id(lat, lon)
+                if point_id not in {p["id"] for p in weather_points}:
+                    weather_points.append({"id": point_id, "lat": float(lat), "lon": float(lon)})
+                    points_changed = True
+
+        refresh_requested = points_changed or interval_triggered or layers_triggered
+
+        if not layer_enabled:
+            return EMPTY_GEOJSON, previous_store or EMPTY_GEOJSON, weather_points
+
+        if not refresh_requested:
+            raise PreventUpdate
+
+        if not weather_points:
+            return EMPTY_GEOJSON, EMPTY_GEOJSON, weather_points
 
         try:
-            geojson = fetch_weather_geojson()
-            if not geojson.get("features"):
+            geojson = fetch_weather_geojson_for_points(weather_points)
+            if weather_points and not geojson.get("features"):
                 print("[Weather] Warning: no features in data")
-            return geojson, geojson
+            return geojson, geojson, weather_points
         except Exception as e:
             print(f"[Weather Callback] Error: {e}")
-            return previous_store or EMPTY_GEOJSON, previous_store or EMPTY_GEOJSON
-
+            return previous_store or EMPTY_GEOJSON, previous_store or EMPTY_GEOJSON, weather_points
 
     # ---- Draw control callback ----
     @app.callback(

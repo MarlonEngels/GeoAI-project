@@ -38,15 +38,36 @@ def get_all_weather_data(points):
 
 
 def fetch_weather_geojson():
-    
-    data = get_all_weather_data(OSLO_INFO_POINTS)
+    return fetch_weather_geojson_for_points(OSLO_INFO_POINTS)
 
+
+def fetch_weather_geojson_for_points(points):
     features = []
-    for d in data:
-        features.append({
-            "type": "Feature",
-            "geometry": {"type": "Point", "coordinates": [d["lon"], d["lat"]]},
-            "properties": d
-        })
 
+    for point in (points or []):
+        if isinstance(point, dict):
+            lat = float(point["lat"])
+            lon = float(point["lon"])
+            weather_id = str(point.get("id") or f"{lat:.6f},{lon:.6f}")
+        else:
+            lat, lon = point
+            lat = float(lat)
+            lon = float(lon)
+            weather_id = f"{lat:.6f},{lon:.6f}"
+
+        entry = get_weather_data(lat, lon)
+        if not entry:
+            print(f"[Weather API] No data for ({lat},{lon})")
+            continue
+
+        entry["weather_id"] = weather_id
+        features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [entry["lon"], entry["lat"]]},
+                "properties": entry,
+            }
+        )
+
+    print(f"[Weather API] Total valid points: {len(features)}")
     return {"type": "FeatureCollection", "features": features}

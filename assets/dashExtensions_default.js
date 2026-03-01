@@ -35,6 +35,7 @@ window.dashExtensions = Object.assign({}, window.dashExtensions, {
                     windFromDirDeg !== null ?
                     windFromDirText + " (" + Math.round(windFromDirDeg) + "&#176;)" :
                     "?";
+                const weatherId = p.weather_id || "";
 
                 var popup = "<b>Weather station</b><br>" +
                     "Temp: " + airTemp + " &#176;C<br>" +
@@ -42,7 +43,11 @@ window.dashExtensions = Object.assign({}, window.dashExtensions, {
                     "Humidity: " + relHum + " %<br>" +
                     "Pressure: " + airPressure + " hPa<br>" +
                     "Cloud cover: " + cloudAreaFraction + " %<br>" +
-                    "Wind direction: " + windFromDirDisplay;
+                    "Wind direction: " + windFromDirDisplay +
+                    "<br><button type='button' class='weather-remove-btn' data-weather-id='" + weatherId + "'" +
+                    " style='margin-top:6px;padding:2px 6px;cursor:pointer;' " +
+                    "onclick='event.stopPropagation();'>" +
+                    "Remove</button>";
 
                 return L.circleMarker(latlng, {
                     radius: 6,
@@ -50,7 +55,8 @@ window.dashExtensions = Object.assign({}, window.dashExtensions, {
                     color: "black",
                     weight: 1,
                     opacity: 1,
-                    fillOpacity: 0.85
+                    fillOpacity: 0.85,
+                    bubblingMouseEvents: false
                 }).bindPopup(popup);
             }
 

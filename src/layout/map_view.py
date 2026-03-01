@@ -1,5 +1,6 @@
 from dash import html, dcc
 import dash_leaflet as dl
+from dash_extensions import EventListener
 from dash_extensions.javascript import assign
 from config import UPDATE_INTERVAL_MS, CENTER, ZOOM
 
@@ -42,6 +43,7 @@ WEATHER_POINT_TO_LAYER = assign(
             windFromDirDeg !== null
                 ? windFromDirText + " (" + Math.round(windFromDirDeg) + "&#176;)"
                 : "?";
+        const weatherId = p.weather_id || "";
 
         var popup = "<b>Weather station</b><br>" +
             "Temp: " + airTemp + " &#176;C<br>" +
@@ -49,7 +51,11 @@ WEATHER_POINT_TO_LAYER = assign(
             "Humidity: " + relHum + " %<br>" +
             "Pressure: " + airPressure + " hPa<br>" +
             "Cloud cover: " + cloudAreaFraction + " %<br>" +
-            "Wind direction: " + windFromDirDisplay;
+            "Wind direction: " + windFromDirDisplay +
+            "<br><button type='button' class='weather-remove-btn' data-weather-id='" + weatherId + "'" +
+            " style='margin-top:6px;padding:2px 6px;cursor:pointer;' " +
+            "onclick='event.stopPropagation();'>" +
+            "Remove</button>";
 
         return L.circleMarker(latlng, {
             radius: 6,
@@ -57,7 +63,8 @@ WEATHER_POINT_TO_LAYER = assign(
             color: "black",
             weight: 1,
             opacity: 1,
-            fillOpacity: 0.85
+            fillOpacity: 0.85,
+            bubblingMouseEvents: false
         }).bindPopup(popup);
     }
     """
@@ -231,66 +238,78 @@ layout = html.Div(
                 
                 dcc.Store(id="ais-store", data=empty_geojson),
                 dcc.Store(id="temp-store", data=empty_geojson),
+                dcc.Store(id="weather-points-store", data=[]),
                 dcc.Store(id="draw-geom-store", data=None),
                 dcc.Store(id="selected-vessel-store", data=None),
             ],
         ),
         
-        dl.Map(
-            id="map",
-            center=CENTER,
-            zoom=ZOOM,
+        EventListener(
+            id="weather-popup-events",
             style={"width": "100%", "height": "100%"},
-            children=[
-                dl.TileLayer(),
-                
-                dl.FeatureGroup(
-                    id="draw-layer",
-                    children=[
-                        dl.EditControl(
-                            id="edit-control",
-                            position="topleft",
-                            draw={
-                                "polyline": False,
-                                "polygon": True,
-                                "circle": False,
-                                "rectangle": True,
-                                "marker": False,
-                                "circlemarker": False,
-                            },
-                            edit={"selectedPathOptions": {"maintainColor": True}},
-                        ),
-                    ],
-                ),
-
-                # AIS ship layer
-                dl.GeoJSON(
-                    id="ais-geojson",
-                    data=empty_geojson,
-                    options=dict(pointToLayer=AIS_POINT_TO_LAYER),
-                ),
-                
-                dl.GeoJSON(
-                    id="track-geojson",
-                    data=empty_geojson,
-                    options={"style": {"color": "cyan", "weight": 3}},
-                ),
-
-                # Weather points layer
-                dl.GeoJSON(
-                    id="temp-geojson",
-                    data=empty_geojson,
-                    options=dict(pointToLayer=WEATHER_POINT_TO_LAYER),
-                ),
-                
-                # Density layer
-                dl.GeoJSON(
-                    id="density-geojson",
-                    data=empty_geojson,
-                    options=dict(style=DENSITY_STYLE),
-                    hideout={"t1": 10, "t2": 30, "t3": 60},
-                ),
+            useCapture=True,
+            events=[
+                {
+                    "event": "click",
+                    "props": ["target.className", "target.dataset.weatherId"],
+                }
             ],
-        )
+            children=dl.Map(
+                id="map",
+                center=CENTER,
+                zoom=ZOOM,
+                style={"width": "100%", "height": "100%"},
+                children=[
+                    dl.TileLayer(),
+                    
+                    dl.FeatureGroup(
+                        id="draw-layer",
+                        children=[
+                            dl.EditControl(
+                                id="edit-control",
+                                position="topleft",
+                                draw={
+                                    "polyline": False,
+                                    "polygon": True,
+                                    "circle": False,
+                                    "rectangle": True,
+                                    "marker": False,
+                                    "circlemarker": False,
+                                },
+                                edit={"selectedPathOptions": {"maintainColor": True}},
+                            ),
+                        ],
+                    ),
+
+                    # AIS ship layer
+                    dl.GeoJSON(
+                        id="ais-geojson",
+                        data=empty_geojson,
+                        options=dict(pointToLayer=AIS_POINT_TO_LAYER),
+                    ),
+                    
+                    dl.GeoJSON(
+                        id="track-geojson",
+                        data=empty_geojson,
+                        options={"style": {"color": "cyan", "weight": 3}},
+                    ),
+
+                    # Weather points layer
+                    dl.GeoJSON(
+                        id="temp-geojson",
+                        data=empty_geojson,
+                        options=dict(pointToLayer=WEATHER_POINT_TO_LAYER),
+                    ),
+                    
+                    # Density layer
+                    dl.GeoJSON(
+                        id="density-geojson",
+                        data=empty_geojson,
+                        options=dict(style=DENSITY_STYLE),
+                        hideout={"t1": 10, "t2": 30, "t3": 60},
+                    ),
+                ],
+            ),
+        ),
     ],
 )
