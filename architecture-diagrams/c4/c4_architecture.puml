@@ -1,0 +1,136 @@
+' =============================================================================
+'  C4 model of the Digital Twin prototype (Context / Container / Component).
+'  Three separate diagrams in one file - the Plan UML extension renders each
+'  @startuml block as its own SVG, named after the block's identifier.
+' =============================================================================
+
+' =============================================================================
+'  Level 1 - System Context
+' =============================================================================
+@startuml c4_context
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+LAYOUT_WITH_LEGEND()
+title C4 L1 - System Context: Oslo Fjord Digital Twin
+
+Person(user, "User", "Explores AIS, weather, and computes ship routes in the Oslo Fjord.")
+
+System_Boundary(dt, "Digital Twin Prototype") {
+  System(app, "Oslo Fjord Dashboard", "Dash web app that visualises live AIS and weather, and invokes VISIR-2 to compute least-distance / least-time / least-CO₂ routes.")
+}
+
+System_Ext(kyst,    "Kystdatahuset AIS API",  "Real-time and historical AIS positions for Norwegian waters.")
+System_Ext(met,     "MET.no API",             "Norwegian Meteorological Institute weather forecasts (locationforecast/2.0).")
+System_Ext(coper,   "Copernicus Marine",      "Ocean reanalysis & forecast (waves, currents) as NetCDF.")
+
+Rel(user,  app,   "Uses", "HTTPS / browser")
+Rel(app,   kyst,  "Fetches AIS positions", "HTTPS / JSON")
+Rel(app,   met,   "Fetches weather forecasts", "HTTPS / JSON")
+Rel(app,   coper, "Downloads env fields", "copernicusmarine SDK / NetCDF")
+
+note as dtNote
+  **One-way coupling.** Data flows physical → digital only, no actuation back to vessels or environment.
+  Per Kritzinger et al. (2018) this is a //digital shadow//, not a twin.
+end note
+
+Lay_R(dt, dtNote)
+
+@enduml
+
+
+' =============================================================================
+'  Level 2 - Containers
+' =============================================================================
+@startuml c4_container
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+title C4 L2 - Containers: Docker Compose topology
+
+Person(user, "Thesis User")
+
+System_Boundary(dt, "Digital Twin Prototype (docker-compose)") {
+  Container(browser,   "Browser UI",        "dash-leaflet (JS in browser)",     "Map, layer controls, route form, progress panel.")
+  Container(appC,      "app",               "Python 3 / Dash / Flask :8050",    "Serves the UI, orchestrates API calls and the route pipeline.")
+  Container(visirC,    "visir",             "Python 3.7 / Flask / conda :5050", "Wraps VISIR-2 (MAIN_Campi, MAIN_Tracce). Thread-locked - not concurrent.")
+  ContainerDb(vols,    "Shared volumes",    "Bind mounts",                       "__namelist/ (YAML), __data/envFields/ (NetCDF), __product/ (CSV).")
+}
+
+System_Ext(kyst,  "Kystdatahuset AIS API")
+System_Ext(met,   "MET.no API")
+System_Ext(coper, "Copernicus Marine")
+
+Rel(user,    browser, "Uses",                    "HTTPS")
+Rel(browser, appC,    "Dash callbacks / JSON",   "HTTP :8050")
+
+Rel(appC,  kyst,   "Poll positions + history",   "HTTPS")
+Rel(appC,  met,    "Poll forecasts (30 s)",      "HTTPS")
+Rel(appC,  coper,  "Subset env fields on demand","copernicusmarine")
+
+Rel(appC,   visirC, "Run campi / run route",     "HTTP :5050 / JSON")
+Rel(appC,   vols,   "Write YAML + NetCDF")
+Rel(visirC, vols,   "Read YAML + NetCDF, write CSV")
+
+@enduml
+
+
+' =============================================================================
+'  Level 3 - Components (inside the `app` container)
+' =============================================================================
+@startuml c4_component
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+LAYOUT_WITH_LEGEND()
+title C4 L3 - Components: inside the `app` container
+
+Container(browser, "Browser UI", "dash-leaflet")
+
+Container_Boundary(appC, "app container (Dash :8050)") {
+
+  Component(layout,    "map_view",            "Dash layout module",   "Declares the page skeleton, map, sidebar, modals.")
+  Component(callbacks, "map_callbacks",       "Dash callbacks",       "All UI wiring: polls, clicks, draws, route submission, progress polling.")
+
+  Component(ais,       "ais_api",             "HTTP client",          "Live AIS positions (Kystdatahuset).")
+  Component(aish,      "ais_hist_api",        "HTTP client",          "Historical AIS tracks for drawn polygons.")
+  Component(wx,        "weather_api",         "HTTP client",          "MET.no locationforecast/2.0.")
+  Component(visirAPI,  "visir_api",           "HTTP client",          "Talks to the visir container over :5050.")
+
+  Component(routeJob,  "route_job",           "Background thread",    "Orchestrates the 5-step route pipeline; exposes progress.")
+  Component(namelist,  "namelist_writer",     "YAML writer",          "Materialises VISIR-2 namelists into __namelist/.")
+  Component(envDL,     "env_data_downloader", "NetCDF downloader",    "Subsets Copernicus Marine into __data/envFields/.")
+
+  Component(density,   "density",             "Grid computation",     "Builds the historical AIS density heatmap.")
+  Component(visirLay,  "visir_layers",        "GeoJSON builder",      "Serialises route CSVs into map-ready GeoJSON.")
+}
+
+Container(visirC, "visir container", "Flask :5050")
+ContainerDb(vols, "Shared volumes",  "__namelist/, __data/envFields/, __product/")
+
+System_Ext(kyst,  "Kystdatahuset")
+System_Ext(met,   "MET.no")
+System_Ext(coper, "Copernicus Marine")
+
+Rel(browser,   layout,    "Renders")
+Rel(browser,   callbacks, "Fires callbacks", "HTTP :8050")
+
+Rel(callbacks, ais,       "Poll (30 s)")
+Rel(callbacks, aish,      "On polygon draw")
+Rel(callbacks, wx,        "Poll (30 s)")
+Rel(callbacks, density,   "Compute grid")
+Rel(callbacks, routeJob,  "Submit job")
+Rel(callbacks, visirLay,  "Build GeoJSON")
+
+Rel(routeJob,  namelist,  "Write YAMLs")
+Rel(routeJob,  envDL,     "Download env fields")
+Rel(routeJob,  visirAPI,  "POST /run-campi, /run")
+
+Rel(ais,       kyst,      "HTTPS")
+Rel(aish,      kyst,      "HTTPS")
+Rel(wx,        met,       "HTTPS")
+Rel(envDL,     coper,     "copernicusmarine")
+
+Rel(namelist,  vols,      "Write YAML")
+Rel(envDL,     vols,      "Write NetCDF")
+Rel(visirAPI,  visirC,    "HTTP :5050")
+
+@enduml

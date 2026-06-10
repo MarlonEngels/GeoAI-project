@@ -11,7 +11,7 @@ def current_position_feature_collection(line_geojson: dict) -> dict:
     """
     point_features = []
 
-    for f in line_geojson.get("features", []):
+    for f in (line_geojson.get("features") or []):
         geom = f.get("geometry", {})
         coords = geom.get("coordinates", [])
 

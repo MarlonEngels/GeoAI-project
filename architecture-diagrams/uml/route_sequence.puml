@@ -1,0 +1,107 @@
+@startuml
+
+skinparam backgroundColor #FEFEFE
+skinparam shadowing false
+skinparam defaultFontName "Segoe UI"
+skinparam defaultFontSize 11
+skinparam sequence {
+  ArrowColor #333
+  LifeLineBorderColor #1565C0
+  ParticipantBackgroundColor #E3F2FD
+  ParticipantBorderColor #1565C0
+}
+
+title Route Computation Pipeline - UML Sequence Diagram
+
+actor User
+participant "Browser\n(dash-leaflet)" as Browser
+participant "map_callbacks.py" as Callbacks
+participant "route_job.py\n<<background thread>>" as Pipeline
+participant "namelist_writer.py" as Namelist
+participant "env_data_downloader.py" as EnvDL
+participant "Copernicus\nMarine API" as Copernicus
+participant "visir_api.py\n<<HTTP client>>" as VisirAPI
+participant "visir_runner.py\n<<Flask :5050>>" as VisirRunner
+participant "MAIN_Campi" as Campi
+participant "MAIN_Tracce" as Tracce
+
+== Submit Route Request ==
+
+User -> Browser : Fill route form\n(origin, dest, vessel,\ndeparture, forcing)
+Browser -> Callbacks : submit_route_form()
+activate Callbacks
+Callbacks -> Pipeline : create_job(job_id)\nrun_pipeline(job_id, params)
+Callbacks --> Browser : Close modal,\nshow progress panel
+deactivate Callbacks
+
+activate Pipeline
+
+== Step 1: params ==
+
+Pipeline -> Namelist : create_namelists(params)
+activate Namelist
+Namelist --> Pipeline : YAML files created\n(_a_Grafi, _b_Campi, _d_Tracce)
+deactivate Namelist
+
+== Step 2: data ==
+
+Pipeline -> EnvDL : download_env_data(start, end, forcing)
+activate EnvDL
+EnvDL -> Copernicus : copernicusmarine.subset()\n(wave: VHM0, VMDR)\n(current: Current, Currentdir)
+Copernicus --> EnvDL : NetCDF files
+EnvDL --> Pipeline : env files saved to\n__data/envFields/
+deactivate EnvDL
+
+== Step 3: fields ==
+
+Pipeline -> VisirAPI : run_campi("tyrr_fields")
+activate VisirAPI
+VisirAPI -> VisirRunner : POST /run-campi
+activate VisirRunner
+VisirRunner -> Campi : Main(jobName="tyrr_fields")
+activate Campi
+note right of Campi : Reads env NetCDF,\ninterpolates onto\ngraph edges
+Campi --> VisirRunner : fields processed
+deactivate Campi
+VisirRunner --> VisirAPI : 200 OK
+deactivate VisirRunner
+VisirAPI --> Pipeline : success
+deactivate VisirAPI
+
+== Step 4: routes ==
+
+Pipeline -> VisirAPI : run_route("tyrr_route", run_name)
+activate VisirAPI
+VisirAPI -> VisirRunner : POST /run
+activate VisirRunner
+VisirRunner -> Tracce : Main(jobName="tyrr_route")
+activate Tracce
+note right of Tracce : Dijkstra on\nweighted graph.\nProduces 3 routes:\n- shortest distance\n- fastest time\n- lowest CO₂
+Tracce --> VisirRunner : CSV voyage plans
+deactivate Tracce
+VisirRunner --> VisirAPI : 200 OK {routes}
+deactivate VisirRunner
+VisirAPI --> Pipeline : {dist: [...], time: [...], CO2t: [...]}
+deactivate VisirAPI
+
+== Step 5: viz ==
+
+Pipeline -> Pipeline : _build_route_geojson(routes)\n_build_route_summary(routes)
+
+deactivate Pipeline
+
+== Progress Polling ==
+
+loop every 500ms while job is running
+  Browser -> Callbacks : poll_route_progress()
+  Callbacks -> Pipeline : get_job(job_id)
+  Pipeline --> Callbacks : {step, status, progress}
+  Callbacks --> Browser : Update progress bar\nand step indicators
+end
+
+== Route Display ==
+
+Browser -> Browser : Render GeoJSON on map\n(3 LineString routes\n+ start/end markers)
+Browser --> User : Display route info panel\n(distance, time, CO₂\nfor each route)
+
+@enduml

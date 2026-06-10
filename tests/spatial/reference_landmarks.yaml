@@ -1,0 +1,49 @@
+# Reference landmarks for the Oslo Fjord domain.
+#
+# Authoritative WGS84 (EPSG:4326) coordinates used to verify that every data
+# source in the system places the same real-world feature in the same place.
+#
+# Sources should be independently verifiable (OSM, Kystverket charts,
+# hydrographic office). Update `tolerance_m` to match the precision you
+# actually trust from the source — not aspirationally tight.
+#
+# Each entry:
+#   name          human-readable
+#   lat, lon      authoritative WGS84 coordinates (decimal degrees)
+#   tolerance_m   max allowed offset from this truth (metres)
+#   port_code     (optional) harb_code used in scandinavia_port_codes.csv
+#   in_water      (optional) whether the point should be in a navigable cell
+
+- name: "Oslo havn (Akershus kai)"
+  lat: 59.9067
+  lon: 10.7369
+  tolerance_m: 200
+  port_code: NOOSL
+  in_water: true
+
+- name: "Drøbak narrows (Oscarsborg)"
+  lat: 59.6778
+  lon: 10.6090
+  tolerance_m: 200
+  in_water: true
+
+- name: "Horten havn"
+  lat: 59.4147
+  lon: 10.4886
+  tolerance_m: 200
+  port_code: NOHRT
+  in_water: true
+
+- name: "Larvik havn"
+  lat: 59.0543
+  lon: 10.0334
+  tolerance_m: 300
+  port_code: NOLAR
+  in_water: true
+
+- name: "Moss havn"
+  lat: 59.4341
+  lon: 10.6610
+  tolerance_m: 200
+  port_code: NOMOS
+  in_water: true

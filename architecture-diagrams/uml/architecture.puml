@@ -1,0 +1,125 @@
+@startuml
+
+skinparam backgroundColor #FEFEFE
+skinparam shadowing false
+skinparam defaultFontName "Segoe UI"
+skinparam defaultFontSize 11
+skinparam node {
+  BackgroundColor #E3F2FD
+  BorderColor #1565C0
+}
+skinparam component {
+  BackgroundColor #FFF
+  BorderColor #555
+}
+skinparam database {
+  BackgroundColor #FFF3E0
+  BorderColor #E65100
+}
+skinparam cloud {
+  BackgroundColor #F3E5F5
+  BorderColor #7B1FA2
+}
+skinparam artifact {
+  BackgroundColor #FFFDE7
+  BorderColor #F9A825
+}
+
+title Digital Twin Prototype - UML Deployment Diagram
+
+actor "User" as user
+
+node "Browser" as browser {
+  component "dash-leaflet\nMap UI" as mapUI
+}
+
+node "Docker Compose" as docker {
+
+  node "app container\n<<Docker>>\nPort 8050" as appContainer {
+
+    component "app.py\n<<entry point>>" as app
+
+    package "src/layout" {
+      component "map_view.py" as layout
+    }
+
+    package "src/callbacks" {
+      component "map_callbacks.py" as callbacks
+    }
+
+    package "src/api" {
+      component "ais_api.py" as aisApi
+      component "ais_hist_api.py" as aisHistApi
+      component "weather_api.py" as weatherApi
+      component "visir_api.py\n<<HTTP client>>" as visirApi
+    }
+
+    package "src/utils" {
+      component "route_job.py\n<<pipeline>>" as routeJob
+      component "namelist_writer.py" as namelistWriter
+      component "env_data_downloader.py" as envDownloader
+    }
+  }
+
+  node "visir container\n<<Docker / conda>>\nPort 5050" as visirContainer {
+
+    component "visir_runner.py\n<<Flask REST API>>" as visirRunner
+
+    component "MAIN_Campi.py\n<<env field processing>>" as mainCampi
+    component "MAIN_Tracce.py\n<<route computation>>" as mainTracce
+
+    database "__namelist/\n(YAML configs)" as namelists
+    database "__data/\n(NetCDF env fields)" as envData
+    database "__product/\n(CSV route outputs)" as products
+  }
+
+  appContainer -[hidden]right- visirContainer
+}
+
+cloud "Kystdatahuset\nAIS API" as kystdata {
+  component "Real-time\npositions" as aisRT
+  component "Historical\ntracks" as aisHist
+}
+
+cloud "MET.no\nWeather API" as metno {
+  component "locationforecast/2.0\n(wind, temp, pressure)" as metForecast
+}
+
+cloud "Copernicus Marine\nService" as copernicus {
+  component "Arctic WAM model\n(VHM0, VMDR,\nCurrent, Currentdir)" as copernicusData
+}
+
+' ---- Relationships ----
+
+user --> browser : "HTTP :8050"
+browser --> app : "Dash framework"
+
+app --> layout : renders
+app --> callbacks : registers
+callbacks --> aisApi : fetch vessels
+callbacks --> weatherApi : fetch weather
+callbacks --> routeJob : submit route job
+
+aisApi --> kystdata : "GET (30s interval)"
+aisHistApi --> kystdata : "POST (on demand)"
+weatherApi --> metno : "GET (30s interval)"
+
+routeJob --> namelistWriter : "1. write YAMLs"
+routeJob --> envDownloader : "2. download data"
+routeJob --> visirApi : "3. POST /run-campi\n4. POST /run"
+
+envDownloader --> copernicus : "copernicusmarine\nPython API"
+
+visirApi --> visirRunner : "HTTP :5050"
+visirRunner --> mainCampi : "process fields"
+visirRunner --> mainTracce : "compute routes"
+
+mainCampi --> namelists : reads
+mainCampi --> envData : reads
+mainTracce --> namelists : reads
+mainTracce --> products : writes
+
+namelists .. namelistWriter : "<<shared volume>>\napp writes, VISIR reads"
+envData .. envDownloader : "<<shared volume>>\napp writes, VISIR reads"
+
+@enduml

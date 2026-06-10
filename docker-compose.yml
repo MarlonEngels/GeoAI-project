@@ -1,0 +1,55 @@
+services:
+
+  # ------------------------------------------------------------------
+  # VISIR-2 routing service
+  # Runs inside the conda environment defined by visir-venv.yaml.
+  # Exposes a Flask REST API on port 5050.
+  # ------------------------------------------------------------------
+  visir:
+    build:
+      context: ./VISIR-2_v6
+      dockerfile: Dockerfile
+    ports:
+      - "5050:5050"
+    volumes:
+      # Mount data directories so pre-computed graphs and env fields
+      # are available inside the container and outputs persist on host.
+      - ./VISIR-2_v6/__data:/app/__data
+      - ./VISIR-2_v6/__product:/app/__product
+      - ./VISIR-2_v6/__namelist:/app/__namelist
+    environment:
+      - PYTHONPATH=/app
+      - VISIR_RUNNER_PORT=5050
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "conda", "run", "-n", "visir-venv",
+             "python", "-c",
+             "import urllib.request; urllib.request.urlopen('http://localhost:5050/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s   # conda env activation takes a moment on first start
+
+  # ------------------------------------------------------------------
+  # Dash application
+  # Calls the visir service via HTTP (VISIR_URL env var).
+  # ------------------------------------------------------------------
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8050:8050"
+    depends_on:
+      visir:
+        condition: service_healthy
+    volumes:
+      # Share namelist and env-data directories with the visir container
+      # so the app can write YAMLs and download NetCDF files that VISIR-2 reads.
+      - ./VISIR-2_v6/__namelist:/app/VISIR-2_v6/__namelist
+      - ./VISIR-2_v6/__data/envFields:/app/VISIR-2_v6/__data/envFields
+    environment:
+      # The app uses this URL to reach the VISIR-2 service.
+      # Docker Compose networking resolves "visir" to the container's IP.
+      - VISIR_URL=http://visir:5050
+    restart: unless-stopped

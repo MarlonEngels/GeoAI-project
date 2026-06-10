@@ -11,3 +11,6 @@ kystdatahuset-python-lib
 textwrap3
 shapely
 copernicusmarine
+pyyaml
+xarray
+netcdf4

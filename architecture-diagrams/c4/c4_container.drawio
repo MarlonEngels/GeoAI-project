@@ -1,0 +1,83 @@
+<mxfile host="app.diagrams.net" agent="Claude" version="24.0.0">
+  <diagram name="C4 L2 - Containers" id="c4cnt">
+    <mxGraphModel dx="1422" dy="820" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="&lt;b&gt;C4 L2 - Containers: Docker Compose topology&lt;/b&gt;" style="text;html=1;align=center;fontSize=16;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1320" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="user" value="&lt;b&gt;Thesis User&lt;/b&gt;&lt;div&gt;[Person]&lt;/div&gt;" style="html=1;shape=mxgraph.c4.person2;align=center;strokeColor=#073B6F;fillColor=#08427B;fontColor=#ffffff;metaEdit=1;resizable=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="100" width="160" height="160" as="geometry" />
+        </mxCell>
+
+        <mxCell id="boundary" value="Digital Twin Prototype (docker-compose)" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;arcSize=20;strokeColor=#666666;fillColor=none;labelPosition=center;verticalLabelPosition=top;align=center;verticalAlign=bottom;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="90" width="800" height="720" as="geometry" />
+        </mxCell>
+
+        <mxCell id="browser" value="&lt;b&gt;Browser UI&lt;/b&gt;&lt;div&gt;[Container: dash-leaflet / JS]&lt;/div&gt;&lt;br&gt;&lt;div&gt;Map, layer controls, route form, progress panel.&lt;/div&gt;" style="html=1;shape=mxgraph.c4.container2;align=center;strokeColor=#3C7FC0;fillColor=#438DD5;fontColor=#ffffff;metaEdit=1;resizable=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="150" width="260" height="140" as="geometry" />
+        </mxCell>
+
+        <mxCell id="app" value="&lt;b&gt;app&lt;/b&gt;&lt;div&gt;[Container: Python / Dash / Flask :8050]&lt;/div&gt;&lt;br&gt;&lt;div&gt;Serves the UI, orchestrates API calls and the route pipeline.&lt;/div&gt;" style="html=1;shape=mxgraph.c4.container2;align=center;strokeColor=#3C7FC0;fillColor=#438DD5;fontColor=#ffffff;metaEdit=1;resizable=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="360" width="260" height="160" as="geometry" />
+        </mxCell>
+
+        <mxCell id="visir" value="&lt;b&gt;visir&lt;/b&gt;&lt;div&gt;[Container: Python 3.7 / Flask / conda :5050]&lt;/div&gt;&lt;br&gt;&lt;div&gt;Wraps VISIR-2 (MAIN_Campi, MAIN_Tracce). Thread-locked - not concurrent.&lt;/div&gt;" style="html=1;shape=mxgraph.c4.container2;align=center;strokeColor=#3C7FC0;fillColor=#438DD5;fontColor=#ffffff;metaEdit=1;resizable=1;" vertex="1" parent="1">
+          <mxGeometry x="780" y="360" width="280" height="160" as="geometry" />
+        </mxCell>
+
+        <mxCell id="vols" value="&lt;b&gt;Shared volumes&lt;/b&gt;&lt;div&gt;[Bind mounts]&lt;/div&gt;&lt;br&gt;&lt;div&gt;__namelist/ (YAML)&lt;br&gt;__data/envFields/ (NetCDF)&lt;br&gt;__product/ (CSV)&lt;/div&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#438DD5;strokeColor=#3C7FC0;fontColor=#ffffff;align=center;" vertex="1" parent="1">
+          <mxGeometry x="560" y="610" width="280" height="150" as="geometry" />
+        </mxCell>
+
+        <mxCell id="kyst" value="&lt;b&gt;Kystdatahuset AIS API&lt;/b&gt;&lt;div&gt;[External System]&lt;/div&gt;" style="html=1;shape=mxgraph.c4.software_system2;align=center;strokeColor=#736782;fillColor=#8C8496;fontColor=#ffffff;metaEdit=1;resizable=1;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="100" width="220" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="met" value="&lt;b&gt;MET.no API&lt;/b&gt;&lt;div&gt;[External System]&lt;/div&gt;" style="html=1;shape=mxgraph.c4.software_system2;align=center;strokeColor=#736782;fillColor=#8C8496;fontColor=#ffffff;metaEdit=1;resizable=1;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="240" width="220" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="coper" value="&lt;b&gt;Copernicus Marine&lt;/b&gt;&lt;div&gt;[External System]&lt;/div&gt;" style="html=1;shape=mxgraph.c4.software_system2;align=center;strokeColor=#736782;fillColor=#8C8496;fontColor=#ffffff;metaEdit=1;resizable=1;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="380" width="220" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" value="Uses&lt;br&gt;[HTTPS]" style="endArrow=blockThin;html=1;fontSize=11;strokeColor=#707070;fillColor=#707070;endFill=1;" edge="1" parent="1" source="user" target="browser">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e2" value="Dash callbacks / JSON&lt;br&gt;[HTTP :8050]" style="endArrow=blockThin;html=1;fontSize=11;strokeColor=#707070;fillColor=#707070;endFill=1;" edge="1" parent="1" source="browser" target="app">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e3" value="Run campi / Run route&lt;br&gt;[HTTP :5050 / JSON]" style="endArrow=blockThin;html=1;fontSize=11;strokeColor=#707070;fillColor=#707070;endFill=1;" edge="1" parent="1" source="app" target="visir">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e4" value="Write YAML + NetCDF" style="endArrow=blockThin;html=1;fontSize=11;strokeColor=#707070;fillColor=#707070;endFill=1;" edge="1" parent="1" source="app" target="vols">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e5" value="Read YAML + NetCDF,&lt;br&gt;write CSV" style="endArrow=blockThin;html=1;fontSize=11;strokeColor=#707070;fillColor=#707070;endFill=1;" edge="1" parent="1" source="visir" target="vols">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e6" value="Poll positions + history&lt;br&gt;[HTTPS]" style="endArrow=blockThin;html=1;fontSize=11;strokeColor=#707070;fillColor=#707070;endFill=1;" edge="1" parent="1" source="app" target="kyst">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e7" value="Poll forecasts (30 s)&lt;br&gt;[HTTPS]" style="endArrow=blockThin;html=1;fontSize=11;strokeColor=#707070;fillColor=#707070;endFill=1;" edge="1" parent="1" source="app" target="met">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e8" value="Subset env fields&lt;br&gt;[copernicusmarine SDK]" style="endArrow=blockThin;html=1;fontSize=11;strokeColor=#707070;fillColor=#707070;endFill=1;" edge="1" parent="1" source="app" target="coper">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

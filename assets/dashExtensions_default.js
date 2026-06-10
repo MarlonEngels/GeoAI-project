@@ -73,6 +73,7 @@ window.dashExtensions = Object.assign({}, window.dashExtensions, {
                     (p.cog || 0);
                 const destination = p.destination || "Unknown";
                 const ais_class = p.ais_class || "Unknown";
+                const draught = p.draught || "Unknown";
                 const last_update = (() => {
                     const s = p.date_time_utc;
                     if (!s) return "Unknown";
@@ -125,7 +126,16 @@ window.dashExtensions = Object.assign({}, window.dashExtensions, {
                     "Destination: " + destination + "<br>" +
                     "Heading: " + heading + "&#176;<br>" +
                     "AIS Class: " + ais_class + "<br>" +
-                    "Last update: " + last_update;
+                    "Draught: " + draught + "<br>" +
+                    "Last update: " + last_update +
+                    "<br><button type='button' class='route-compute-btn' " +
+                    "data-vessel-lat='" + latlng.lat + "' " +
+                    "data-vessel-lon='" + latlng.lng + "' " +
+                    "data-vessel-name='" + name.replace(/'/g, "&#39;") + "' " +
+                    "style='margin-top:6px;padding:4px 10px;cursor:pointer;" +
+                    "background:#1976D2;color:white;border:none;border-radius:3px;font-size:12px;' " +
+                    "onclick='event.stopPropagation();'>" +
+                    "Compute route</button>";
 
                 const marker = L.marker(latlng, {
                     icon: icon
@@ -136,25 +146,174 @@ window.dashExtensions = Object.assign({}, window.dashExtensions, {
 
             ,
         function2: function(feature, context) {
-            const c = (feature.properties && feature.properties.count) ? feature.properties.count : 0;
+                const c = (feature.properties && feature.properties.count) ? feature.properties.count : 0;
 
-            const h = context.hideout || {};
-            const t1 = h.t1 ?? 1;
-            const t2 = h.t2 ?? 2;
-            const t3 = h.t3 ?? 3;
+                const h = context.hideout || {};
+                const t1 = h.t1 ?? 1;
+                const t2 = h.t2 ?? 2;
+                const t3 = h.t3 ?? 3;
 
-            let fill = "green";
-            if (c >= t3) fill = "red";
-            else if (c >= t2) fill = "orange";
-            else if (c >= t1) fill = "yellow";
+                let fill = "green";
+                if (c >= t3) fill = "red";
+                else if (c >= t2) fill = "orange";
+                else if (c >= t1) fill = "yellow";
 
+                return {
+                    color: "black",
+                    weight: 0.5,
+                    fillColor: fill,
+                    fillOpacity: 0.45
+                };
+            }
+
+            ,
+        function3: function(feature, context) {
+                const rt = feature.properties.routeType;
+                const colors = {
+                    "dist": "#1E90FF",
+                    "time": "#e53935",
+                    "CO2t": "#2e7d32"
+                };
+                const dashes = {
+                    "dist": "4 8",
+                    "time": "12 8"
+                };
+                return {
+                    color: colors[rt] || "#333",
+                    weight: 3.5,
+                    opacity: 0.9,
+                    dashArray: dashes[rt] || null
+                };
+            }
+
+            ,
+        function4: function(feature, latlng, context) {
+                const mt = feature.properties.markerType;
+                if (mt === "start") {
+                    return L.marker(latlng, {
+                        icon: L.divIcon({
+                            html: '<div style="font-size:22px;line-height:22px;">&#11088;</div>',
+                            className: '',
+                            iconSize: [22, 22],
+                            iconAnchor: [11, 11]
+                        })
+                    }).bindTooltip("Departure");
+                }
+                return L.circleMarker(latlng, {
+                    radius: 7,
+                    fillColor: "#e53935",
+                    color: "white",
+                    weight: 2,
+                    fillOpacity: 1
+                }).bindTooltip("Arrival");
+            }
+
+            ,
+        function5: function(feature, context) {
+                return {
+                    color: "#e60000",
+                    weight: 2.5,
+                    opacity: 0.9,
+                    fill: false
+                };
+            }
+
+            ,
+        function6: function(feature, context) {
+                var d = feature.properties.depth;
+                var color = "#b3d9ff";
+                if (d <= -500) color = "#003366";
+                else if (d <= -300) color = "#005599";
+                else if (d <= -200) color = "#0077cc";
+                else if (d <= -100) color = "#3399dd";
+                else if (d <= -50) color = "#66b3e6";
+                else if (d <= -10) color = "#99ccee";
+
+                return {
+                    color: color,
+                    weight: 1.2,
+                    opacity: 0.7,
+                    fill: false
+                };
+            }
+
+            ,
+        function7: function(feature, layer) {
+                var d = feature.properties.depth;
+                layer.bindTooltip(d + " m", {
+                    sticky: true,
+                    className: "bathy-tooltip"
+                });
+            }
+
+            ,
+        function8: function(feature, layer) {
+                var p = feature.properties;
+                if (p.routeType && feature.geometry.type === "LineString") {
+                    var labels = {
+                        "dist": "Shortest Distance",
+                        "time": "Fastest Time",
+                        "CO2t": "Lowest CO2"
+                    };
+                    layer.bindTooltip(
+                        "<b>" + (labels[p.routeType] || p.routeType) + "</b><br>" +
+                        "Distance: " + p.distance + " nmi<br>" +
+                        "Duration: " + p.duration + " hrs<br>" +
+                        "CO2: " + p.co2 + " t", {
+                            sticky: true
+                        }
+                    );
+                }
+            }
+
+            ,
+        function9: function(feature) {
+            var p = feature.properties || {};
+            var c = '#fb8c00';
+            if (p.pass === true) c = '#2e7d32';
+            else if (p.pass === false) c = '#c62828';
+            var t = feature.geometry && feature.geometry.type;
+            if (t === 'Polygon' || t === 'MultiPolygon') {
+                return {
+                    color: c,
+                    weight: 2,
+                    fillColor: c,
+                    fillOpacity: 0.08,
+                    dashArray: '4 4'
+                };
+            }
+            if (t === 'LineString') {
+                return {
+                    color: c,
+                    weight: 2,
+                    opacity: 0.9
+                };
+            }
             return {
-                color: "black",
-                weight: 0.5,
-                fillColor: fill,
-                fillOpacity: 0.45
+                color: c,
+                weight: 2
             };
+        },
+        function10: function(feature, latlng) {
+            var p = feature.properties || {};
+            var c = '#fb8c00';
+            if (p.pass === true) c = '#2e7d32';
+            else if (p.pass === false) c = '#c62828';
+            return L.circleMarker(latlng, {
+                radius: 6,
+                color: c,
+                fillColor: c,
+                fillOpacity: 0.75,
+                weight: 2
+            });
+        },
+        function11: function(feature, layer) {
+            var p = feature.properties || {};
+            if (p.tooltip) {
+                layer.bindTooltip(p.tooltip, {
+                    sticky: true
+                });
+            }
         }
-
     }
 });

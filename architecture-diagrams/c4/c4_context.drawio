@@ -1,0 +1,59 @@
+<mxfile host="app.diagrams.net" agent="Claude" version="24.0.0">
+  <diagram name="C4 L1 - Context" id="c4ctx">
+    <mxGraphModel dx="1422" dy="820" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="826" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="&lt;b&gt;C4 L1 - System Context: Oslo Fjord Digital Twin&lt;/b&gt;" style="text;html=1;align=center;fontSize=16;fontStyle=0;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1080" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="user" value="&lt;b&gt;Thesis User&lt;/b&gt;&lt;div&gt;[Person]&lt;/div&gt;&lt;br&gt;&lt;div&gt;Explores AIS &amp; weather, computes ship routes in the Oslo Fjord.&lt;/div&gt;" style="html=1;shape=mxgraph.c4.person2;align=center;strokeColor=#073B6F;fillColor=#08427B;fontColor=#ffffff;metaEdit=1;resizable=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="320" width="180" height="180" as="geometry" />
+        </mxCell>
+
+        <mxCell id="boundary" value="Digital Twin Prototype" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;arcSize=20;strokeColor=#666666;fillColor=none;labelPosition=center;verticalLabelPosition=top;align=center;verticalAlign=bottom;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="230" width="360" height="360" as="geometry" />
+        </mxCell>
+
+        <mxCell id="app" value="&lt;b&gt;Oslo Fjord Dashboard&lt;/b&gt;&lt;div&gt;[Software System]&lt;/div&gt;&lt;br&gt;&lt;div&gt;Dash web app that visualises live AIS and weather, and invokes VISIR-2 to compute least-distance / least-time / least-CO&lt;sub&gt;2&lt;/sub&gt; routes.&lt;/div&gt;" style="html=1;shape=mxgraph.c4.software_system2;align=center;strokeColor=#0D5091;fillColor=#1061B0;fontColor=#ffffff;metaEdit=1;resizable=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="320" width="280" height="180" as="geometry" />
+        </mxCell>
+
+        <mxCell id="kyst" value="&lt;b&gt;Kystdatahuset AIS API&lt;/b&gt;&lt;div&gt;[External System]&lt;/div&gt;&lt;br&gt;&lt;div&gt;Real-time and historical AIS positions for Norwegian waters.&lt;/div&gt;" style="html=1;shape=mxgraph.c4.software_system2;align=center;strokeColor=#736782;fillColor=#8C8496;fontColor=#ffffff;metaEdit=1;resizable=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="150" width="260" height="140" as="geometry" />
+        </mxCell>
+
+        <mxCell id="met" value="&lt;b&gt;MET.no API&lt;/b&gt;&lt;div&gt;[External System]&lt;/div&gt;&lt;br&gt;&lt;div&gt;Norwegian Meteorological Institute weather forecasts (locationforecast/2.0).&lt;/div&gt;" style="html=1;shape=mxgraph.c4.software_system2;align=center;strokeColor=#736782;fillColor=#8C8496;fontColor=#ffffff;metaEdit=1;resizable=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="340" width="260" height="140" as="geometry" />
+        </mxCell>
+
+        <mxCell id="coper" value="&lt;b&gt;Copernicus Marine&lt;/b&gt;&lt;div&gt;[External System]&lt;/div&gt;&lt;br&gt;&lt;div&gt;Ocean reanalysis &amp; forecast (waves, currents) as NetCDF.&lt;/div&gt;" style="html=1;shape=mxgraph.c4.software_system2;align=center;strokeColor=#736782;fillColor=#8C8496;fontColor=#ffffff;metaEdit=1;resizable=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="530" width="260" height="140" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" value="Uses&lt;br&gt;[HTTPS / browser]" style="endArrow=blockThin;html=1;rounded=0;fontSize=11;startSize=14;endSize=14;strokeColor=#707070;fillColor=#707070;endFill=1;" edge="1" parent="1" source="user" target="app">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e2" value="Fetches AIS positions&lt;br&gt;[HTTPS / JSON]" style="endArrow=blockThin;html=1;rounded=0;fontSize=11;startSize=14;endSize=14;strokeColor=#707070;fillColor=#707070;endFill=1;" edge="1" parent="1" source="app" target="kyst">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e3" value="Fetches weather forecasts&lt;br&gt;[HTTPS / JSON]" style="endArrow=blockThin;html=1;rounded=0;fontSize=11;startSize=14;endSize=14;strokeColor=#707070;fillColor=#707070;endFill=1;" edge="1" parent="1" source="app" target="met">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e4" value="Downloads env fields&lt;br&gt;[copernicusmarine SDK / NetCDF]" style="endArrow=blockThin;html=1;rounded=0;fontSize=11;startSize=14;endSize=14;strokeColor=#707070;fillColor=#707070;endFill=1;" edge="1" parent="1" source="app" target="coper">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="note" value="&lt;b&gt;One-way coupling.&lt;/b&gt; Data flows physical &#8594; digital only. No actuation back to the vessels or environment, so per Kritzinger et al. (2018) this is strictly a &lt;i&gt;digital shadow&lt;/i&gt;." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fontSize=11;fillColor=#FFFFCC;strokeColor=#cccc00;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="80" y="600" width="300" height="120" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

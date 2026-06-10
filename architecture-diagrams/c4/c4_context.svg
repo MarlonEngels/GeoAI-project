@@ -1,0 +1,281 @@
+<svg width="724" height="876" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" zoomAndPan="magnify" version="1.1" preserveAspectRatio="none" data-diagram-type="DESCRIPTION" contentStyleType="text/css">
+ <title>C4 L1 - System Context: Oslo Fjord Digital Twin</title>
+
+ <g>
+  <title>Layer 1</title>
+  <g id="svg_1">
+   <g id="svg_2" data-source-line="13" class="title">
+    <text id="svg_3" y="24.5332" x="196.7764" textLength="317.3652" lengthAdjust="spacing" font-weight="bold" font-size="14" font-family="sans-serif" fill="#000000">C4 L1 - System Context: Oslo Fjord Digital Twin</text>
+   </g>
+   <!--cluster dt-->
+   <g id="cluster_dt" data-uid="ent0003" data-source-line="1666" data-entity="dt" class="cluster">
+    <rect id="svg_4" stroke-dasharray="7,7" stroke="#444444" y="293.6094" x="204.5" width="269" height="232" fill="none"/>
+    <text id="svg_5" y="311.2188" x="257.5547" textLength="168.8906" lengthAdjust="spacing" font-weight="bold" font-size="16" font-family="sans-serif" fill="#444444">Digital Twin Prototype</text>
+   </g>
+   <!--entity app-->
+   <g id="entity_app" data-uid="ent0004" data-source-line="398" data-entity="app" class="entity">
+    <rect id="svg_7" stroke-width="0.5" stroke="#3C7FC0" y="355.6094" x="248" width="201.3232" height="145.7813" fill="#1168BD"/>
+    <text id="svg_8" y="382.2188" x="264.6538" textLength="35.5625" lengthAdjust="spacing" font-weight="bold" font-size="16" font-family="sans-serif" fill="#FFFFFF">Oslo</text>
+    <text id="svg_9" y="382.2188" x="300.2163" textLength="4.4453" lengthAdjust="spacing" font-weight="bold" font-size="16" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_10" y="382.2188" x="304.6616" textLength="39.9922" lengthAdjust="spacing" font-weight="bold" font-size="16" font-family="sans-serif" fill="#FFFFFF">Fjord</text>
+    <text id="svg_11" y="382.2188" x="344.6538" textLength="4.4453" lengthAdjust="spacing" font-weight="bold" font-size="16" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_12" y="382.2188" x="349.0991" textLength="83.5703" lengthAdjust="spacing" font-weight="bold" font-size="16" font-family="sans-serif" fill="#FFFFFF">Dashboard</text>
+    <text id="svg_13" y="400.2676" x="346.7168" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_14" y="417.877" x="258" textLength="32.6826" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">Dash</text>
+    <text id="svg_15" y="417.877" x="290.6826" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_16" y="417.877" x="294.5723" textLength="25.6826" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">web</text>
+    <text id="svg_17" y="417.877" x="320.2549" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_18" y="417.877" x="324.1445" textLength="23.3584" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">app</text>
+    <text id="svg_19" y="417.877" x="347.5029" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_20" y="417.877" x="351.3926" textLength="23.3516" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">that</text>
+    <text id="svg_21" y="417.877" x="374.7441" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_22" y="417.877" x="378.6338" textLength="60.6895" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">visualises</text>
+    <text id="svg_23" y="435.4863" x="268.8896" textLength="21.0068" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">live</text>
+    <text id="svg_24" y="435.4863" x="289.8965" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_25" y="435.4863" x="293.7861" textLength="22.5654" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">AIS</text>
+    <text id="svg_26" y="435.4863" x="316.3516" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_27" y="435.4863" x="320.2412" textLength="23.3584" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">and</text>
+    <text id="svg_28" y="435.4863" x="343.5996" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_29" y="435.4863" x="347.4893" textLength="53.6963" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">weather,</text>
+    <text id="svg_30" y="435.4863" x="401.1855" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_31" y="435.4863" x="405.0752" textLength="23.3584" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">and</text>
+    <text id="svg_32" y="453.0957" x="260.287" textLength="47.4688" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">invokes</text>
+    <text id="svg_33" y="453.0957" x="309.3687" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_34" y="453.0957" x="313.2583" textLength="49.0137" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">VISIR-2</text>
+    <text id="svg_35" y="453.0957" x="362.272" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_36" y="453.0957" x="366.1616" textLength="11.6758" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">to</text>
+    <text id="svg_37" y="453.0957" x="377.8374" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_38" y="453.0957" x="381.7271" textLength="53.6963" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">compute</text>
+    <text id="svg_39" y="470.7051" x="265.4067" textLength="86.3789" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">least-distance</text>
+    <text id="svg_40" y="470.7051" x="351.7856" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_41" y="470.7051" x="355.6753" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">/</text>
+    <text id="svg_42" y="470.7051" x="359.5649" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_43" y="470.7051" x="363.4546" textLength="60.6826" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">least-time</text>
+    <text id="svg_44" y="470.7051" x="424.1372" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_45" y="470.7051" x="428.0269" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">/</text>
+    <text id="svg_46" y="488.3145" x="294.7466" textLength="61.1406" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">least-CO₂</text>
+    <text id="svg_47" y="488.3145" x="355.8872" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_48" y="488.3145" x="359.7769" textLength="42.7998" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">routes.</text>
+   </g>
+   <!--entity user-->
+   <g id="entity_user" data-uid="ent0002" data-source-line="379" data-entity="user" class="entity">
+    <rect id="svg_49" stroke-width="0.5" stroke="#073B6F" y="45.6094" x="253" width="191.2061" height="162.2548" fill="#08427B"/>
+    <image id="svg_50" y="55.6094" xlink:href="data:image/png;base64,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" x="322.7569" width="52" height="52"/>
+    <text id="svg_51" y="123.9111" x="330.814" textLength="35.5781" lengthAdjust="spacing" font-weight="bold" font-size="16" font-family="sans-serif" fill="#FFFFFF">User</text>
+    <text id="svg_52" y="141.9599" x="346.6582" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_53" y="159.5693" x="263.7793" textLength="54.4688" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">Explores</text>
+    <text id="svg_54" y="159.5693" x="318.248" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_55" y="159.5693" x="322.1377" textLength="26.4551" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">AIS,</text>
+    <text id="svg_56" y="159.5693" x="348.5928" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_57" y="159.5693" x="352.4824" textLength="53.6963" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">weather,</text>
+    <text id="svg_58" y="159.5693" x="406.1787" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_59" y="159.5693" x="410.0684" textLength="23.3584" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">and</text>
+    <text id="svg_60" y="177.1786" x="263" textLength="60.6963" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">computes</text>
+    <text id="svg_61" y="177.1786" x="323.6963" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_62" y="177.1786" x="327.5859" textLength="25.6826" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">ship</text>
+    <text id="svg_63" y="177.1786" x="353.2686" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_64" y="177.1786" x="357.1582" textLength="38.9102" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">routes</text>
+    <text id="svg_65" y="177.1786" x="396.0684" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_66" y="177.1786" x="399.958" textLength="10.8965" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">in</text>
+    <text id="svg_67" y="177.1786" x="410.8545" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_68" y="177.1786" x="414.7441" textLength="19.4619" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">the</text>
+    <text id="svg_69" y="194.788" x="314.3721" textLength="28.7861" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">Oslo</text>
+    <text id="svg_70" y="194.788" x="343.1582" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_71" y="194.788" x="347.0479" textLength="35.7861" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">Fjord.</text>
+   </g>
+   <!--entity kyst-->
+   <g id="entity_kyst" data-uid="ent0005" data-source-line="413" data-entity="kyst" class="entity">
+    <rect id="svg_72" stroke-width="0.5" stroke="#8A8A8A" y="635.6094" x="7" width="215.3096" height="92.9531" fill="#999999"/>
+    <text id="svg_73" y="662.2188" x="28.4126" textLength="110.25" lengthAdjust="spacing" font-weight="bold" font-size="16" font-family="sans-serif" fill="#FFFFFF">Kystdatahuset</text>
+    <text id="svg_74" y="662.2188" x="138.6626" textLength="4.4453" lengthAdjust="spacing" font-weight="bold" font-size="16" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_75" y="662.2188" x="143.1079" textLength="26.6719" lengthAdjust="spacing" font-weight="bold" font-size="16" font-family="sans-serif" fill="#FFFFFF">AIS</text>
+    <text id="svg_76" y="662.2188" x="169.7798" textLength="4.4453" lengthAdjust="spacing" font-weight="bold" font-size="16" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_77" y="662.2188" x="174.2251" textLength="26.6719" lengthAdjust="spacing" font-weight="bold" font-size="16" font-family="sans-serif" fill="#FFFFFF">API</text>
+    <text id="svg_78" y="680.2676" x="112.71" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_79" y="697.877" x="28.2861" textLength="59.9033" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">Real-time</text>
+    <text id="svg_80" y="697.877" x="88.1895" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_81" y="697.877" x="92.0791" textLength="23.3584" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">and</text>
+    <text id="svg_82" y="697.877" x="115.4375" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_83" y="697.877" x="119.3271" textLength="55.2412" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">historical</text>
+    <text id="svg_84" y="697.877" x="174.5684" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_85" y="697.877" x="178.458" textLength="22.5654" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">AIS</text>
+    <text id="svg_86" y="715.4863" x="17" textLength="55.2549" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">positions</text>
+    <text id="svg_87" y="715.4863" x="72.2549" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_88" y="715.4863" x="76.1445" textLength="16.3379" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">for</text>
+    <text id="svg_89" y="715.4863" x="92.4824" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_90" y="715.4863" x="96.3721" textLength="66.9238" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">Norwegian</text>
+    <text id="svg_91" y="715.4863" x="163.2959" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_92" y="715.4863" x="167.1855" textLength="45.124" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">waters.</text>
+   </g>
+   <!--entity met-->
+   <g id="entity_met" data-uid="ent0006" data-source-line="413" data-entity="met" class="entity">
+    <rect id="svg_93" stroke-width="0.5" stroke="#8A8A8A" y="626.6094" x="257" width="183.4131" height="110.5625" fill="#999999"/>
+    <text id="svg_94" y="653.2188" x="304.2651" textLength="57.7656" lengthAdjust="spacing" font-weight="bold" font-size="16" font-family="sans-serif" fill="#FFFFFF">MET.no</text>
+    <text id="svg_95" y="653.2188" x="362.0308" textLength="4.4453" lengthAdjust="spacing" font-weight="bold" font-size="16" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_96" y="653.2188" x="366.4761" textLength="26.6719" lengthAdjust="spacing" font-weight="bold" font-size="16" font-family="sans-serif" fill="#FFFFFF">API</text>
+    <text id="svg_97" y="671.2676" x="346.7617" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_98" y="688.877" x="267.7759" textLength="66.9238" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">Norwegian</text>
+    <text id="svg_99" y="688.877" x="334.6997" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_100" y="688.877" x="338.5894" textLength="91.0479" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">Meteorological</text>
+    <text id="svg_101" y="706.4863" x="267" textLength="49.0273" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">Institute</text>
+    <text id="svg_102" y="706.4863" x="316.0273" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_103" y="706.4863" x="319.917" textLength="49.8066" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">weather</text>
+    <text id="svg_104" y="706.4863" x="369.7236" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_105" y="706.4863" x="373.6133" textLength="56.7998" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">forecasts</text>
+    <text id="svg_106" y="724.0957" x="281.3965" textLength="134.6201" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">(locationforecast/2.0).</text>
+   </g>
+   <!--entity coper-->
+   <g id="entity_coper" data-uid="ent0007" data-source-line="413" data-entity="coper" class="entity">
+    <rect id="svg_107" stroke-width="0.5" stroke="#8A8A8A" y="635.6094" x="475.5" width="204.3721" height="92.9531" fill="#999999"/>
+    <text id="svg_108" y="662.2188" x="505.6704" textLength="88.0156" lengthAdjust="spacing" font-weight="bold" font-size="16" font-family="sans-serif" fill="#FFFFFF">Copernicus</text>
+    <text id="svg_109" y="662.2188" x="593.686" textLength="4.4453" lengthAdjust="spacing" font-weight="bold" font-size="16" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_110" y="662.2188" x="598.1313" textLength="51.5703" lengthAdjust="spacing" font-weight="bold" font-size="16" font-family="sans-serif" fill="#FFFFFF">Marine</text>
+    <text id="svg_111" y="680.2676" x="575.7412" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_112" y="697.877" x="490.145" textLength="41.248" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">Ocean</text>
+    <text id="svg_113" y="697.877" x="531.3931" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_114" y="697.877" x="535.2827" textLength="63.0273" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">reanalysis</text>
+    <text id="svg_115" y="697.877" x="598.3101" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_116" y="697.877" x="602.1997" textLength="9.3379" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">&amp;</text>
+    <text id="svg_117" y="697.877" x="611.5376" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_118" y="697.877" x="615.4272" textLength="49.7998" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">forecast</text>
+    <text id="svg_119" y="715.4863" x="485.5" textLength="48.2344" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">(waves,</text>
+    <text id="svg_120" y="715.4863" x="533.7344" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_121" y="715.4863" x="537.624" textLength="55.2344" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">currents)</text>
+    <text id="svg_122" y="715.4863" x="592.8584" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_123" y="715.4863" x="596.748" textLength="14.7861" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">as</text>
+    <text id="svg_124" y="715.4863" x="611.5342" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <text id="svg_125" y="715.4863" x="615.4238" textLength="54.4482" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">NetCDF.</text>
+   </g>
+   <g id="entity_dtNote" data-uid="ent0012" data-source-line="31" data-entity="dtNote" class="entity">
+    <path id="svg_126" stroke-width="0.5" stroke="#181818" fill="#FEFFDD" d="m497.5,374.6094l0,108.1094l220.418,0l0,-98.1094l-10,-10l-210.418,0"/>
+    <path id="svg_127" stroke="#181818" fill="#FEFFDD" d="m707.918,374.6094l0,10l10,0l-10,-10"/>
+    <text id="svg_128" y="393.1045" x="513.2754" textLength="54.1836" lengthAdjust="spacing" font-weight="bold" font-size="13" font-family="sans-serif" fill="#000000">One-way</text>
+    <text id="svg_129" y="393.1045" x="567.459" textLength="3.6118" lengthAdjust="spacing" font-weight="bold" font-size="13" font-family="sans-serif" fill="#000000"/>
+    <text id="svg_130" y="393.1045" x="571.0708" textLength="57.77" lengthAdjust="spacing" font-weight="bold" font-size="13" font-family="sans-serif" fill="#000000">coupling.</text>
+    <text id="svg_131" y="393.1045" x="628.8408" textLength="3.6118" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000"/>
+    <text id="svg_132" y="393.1045" x="632.4526" textLength="27.46" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000">Data</text>
+    <text id="svg_133" y="393.1045" x="659.9126" textLength="3.6118" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000"/>
+    <text id="svg_134" y="393.1045" x="663.5244" textLength="29.6182" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000">flows</text>
+    <text id="svg_135" y="409.4561" x="528.5288" textLength="46.9663" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000">physical</text>
+    <text id="svg_136" y="409.4561" x="575.4951" textLength="3.6118" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000"/>
+    <text id="svg_137" y="409.4561" x="579.1069" textLength="12.0605" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000">→</text>
+    <text id="svg_138" y="409.4561" x="591.1675" textLength="3.6118" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000"/>
+    <text id="svg_139" y="409.4561" x="594.7793" textLength="33.9663" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000">digital</text>
+    <text id="svg_140" y="409.4561" x="628.7456" textLength="3.6118" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000"/>
+    <text id="svg_141" y="409.4561" x="632.3574" textLength="27.46" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000">only,</text>
+    <text id="svg_142" y="409.4561" x="659.8174" textLength="3.6118" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000"/>
+    <text id="svg_143" y="409.4561" x="663.4292" textLength="14.46" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000">no</text>
+    <text id="svg_144" y="425.8076" x="523" textLength="52.7617" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000">actuation</text>
+    <text id="svg_145" y="425.8076" x="575.7617" textLength="3.6118" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000"/>
+    <text id="svg_146" y="425.8076" x="579.3735" textLength="27.46" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000">back</text>
+    <text id="svg_147" y="425.8076" x="606.8335" textLength="3.6118" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000"/>
+    <text id="svg_148" y="425.8076" x="610.4453" textLength="10.8418" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000">to</text>
+    <text id="svg_149" y="425.8076" x="621.2871" textLength="3.6118" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000"/>
+    <text id="svg_150" y="425.8076" x="624.8989" textLength="43.3481" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000">vessels</text>
+    <text id="svg_151" y="425.8076" x="668.2471" textLength="3.6118" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000"/>
+    <text id="svg_152" y="425.8076" x="671.8589" textLength="11.5591" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000">or</text>
+    <text id="svg_153" y="442.1592" x="565.634" textLength="75.1499" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000">environment.</text>
+    <text id="svg_154" y="458.5107" x="503.5" textLength="20.23" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000">Per</text>
+    <text id="svg_155" y="458.5107" x="523.73" textLength="3.6118" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000"/>
+    <text id="svg_156" y="458.5107" x="527.3418" textLength="54.9072" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000">Kritzinger</text>
+    <text id="svg_157" y="458.5107" x="582.249" textLength="3.6118" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000"/>
+    <text id="svg_158" y="458.5107" x="585.8608" textLength="10.8418" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000">et</text>
+    <text id="svg_159" y="458.5107" x="596.7026" textLength="3.6118" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000"/>
+    <text id="svg_160" y="458.5107" x="600.3145" textLength="13.73" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000">al.</text>
+    <text id="svg_161" y="458.5107" x="614.0444" textLength="3.6118" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000"/>
+    <text id="svg_162" y="458.5107" x="617.6563" textLength="37.5781" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000">(2018)</text>
+    <text id="svg_163" y="458.5107" x="655.2344" textLength="3.6118" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000"/>
+    <text id="svg_164" y="458.5107" x="658.8462" textLength="20.23" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000">this</text>
+    <text id="svg_165" y="458.5107" x="679.0762" textLength="3.6118" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000"/>
+    <text id="svg_166" y="458.5107" x="682.688" textLength="9.3882" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000">is</text>
+    <text id="svg_167" y="458.5107" x="692.0762" textLength="3.6118" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000"/>
+    <text id="svg_168" y="458.5107" x="695.688" textLength="7.23" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000">a</text>
+    <text id="svg_169" y="474.8623" x="528.7764" textLength="33.9663" lengthAdjust="spacing" font-style="italic" font-size="13" font-family="sans-serif" fill="#000000">digital</text>
+    <text id="svg_170" y="474.8623" x="562.7427" textLength="3.6118" lengthAdjust="spacing" font-style="italic" font-size="13" font-family="sans-serif" fill="#000000"/>
+    <text id="svg_171" y="474.8623" x="566.3545" textLength="44.8081" lengthAdjust="spacing" font-style="italic" font-size="13" font-family="sans-serif" fill="#000000">shadow</text>
+    <text id="svg_172" y="474.8623" x="611.1626" textLength="3.6118" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000">,</text>
+    <text id="svg_173" y="474.8623" x="614.7744" textLength="3.6118" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000"/>
+    <text id="svg_174" y="474.8623" x="618.3862" textLength="18.0718" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000">not</text>
+    <text id="svg_175" y="474.8623" x="636.458" textLength="3.6118" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000"/>
+    <text id="svg_176" y="474.8623" x="640.0698" textLength="7.23" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000">a</text>
+    <text id="svg_177" y="474.8623" x="647.2998" textLength="3.6118" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000"/>
+    <text id="svg_178" y="474.8623" x="650.9116" textLength="26.73" lengthAdjust="spacing" font-size="13" font-family="sans-serif" fill="#000000">twin.</text>
+   </g>
+   <!--link user to app-->
+   <g id="link_user_app" data-uid="lnk8" data-source-line="1779" data-entity-2="app" data-entity-1="user" class="link">
+    <path stroke="#666666" id="user-to-app" fill="none" d="m348.5,207.6094c0,46 0,95.32 0,139.91"/>
+    <polygon id="svg_179" stroke="#666666" points="348.5,355.5194,351.5,347.5194,345.5,347.5194,348.5,355.5194" fill="#666666"/>
+    <text id="svg_182" y="266.1602" x="392.168" textLength="3.334" lengthAdjust="spacing" font-style="italic" font-size="12" font-family="sans-serif" fill="#666666"/>
+    <text id="svg_184" y="266.1602" x="398.8359" textLength="3.334" lengthAdjust="spacing" font-style="italic" font-size="12" font-family="sans-serif" fill="#666666"/>
+   </g>
+   <!--link app to kyst-->
+   <g id="link_app_kyst" data-uid="lnk9" data-source-line="1779" data-entity-2="kyst" data-entity-1="app" class="link">
+    <path stroke="#666666" id="app-to-kyst" fill="none" d="m88.23949,541.29007"/>
+    <text id="svg_187" y="571.24707" x="60.23949" textLength="45.3516" lengthAdjust="spacing" font-weight="bold" font-size="12" font-family="sans-serif" fill="#666666">Fetches</text>
+    <text id="svg_188" y="571.24707" x="105.59109" textLength="3.334" lengthAdjust="spacing" font-weight="bold" font-size="12" font-family="sans-serif" fill="#666666"/>
+    <text id="svg_189" y="571.24707" x="108.92499" textLength="20.0039" lengthAdjust="spacing" font-weight="bold" font-size="12" font-family="sans-serif" fill="#666666">AIS</text>
+    <text id="svg_190" y="571.24707" x="128.92899" textLength="3.334" lengthAdjust="spacing" font-weight="bold" font-size="12" font-family="sans-serif" fill="#666666"/>
+    <text id="svg_191" y="571.24707" x="132.26289" textLength="53.332" lengthAdjust="spacing" font-weight="bold" font-size="12" font-family="sans-serif" fill="#666666">positions</text>
+    <text id="svg_192" y="586.34087" x="78.91329" textLength="42.668" lengthAdjust="spacing" font-style="normal" font-size="12" font-family="sans-serif" fill="#666666">[HTTPS</text>
+    <text id="svg_193" y="586.34087" x="121.58129" textLength="3.334" lengthAdjust="spacing" font-style="italic" font-size="12" font-family="sans-serif" fill="#666666"/>
+    <text id="svg_194" y="586.34087" x="124.91529" textLength="3.334" lengthAdjust="spacing" font-style="normal" font-size="12" font-family="sans-serif" fill="#666666">/</text>
+    <text id="svg_195" y="586.34087" x="128.24929" textLength="3.334" lengthAdjust="spacing" font-style="italic" font-size="12" font-family="sans-serif" fill="#666666"/>
+    <text id="svg_196" y="586.34087" x="131.58329" textLength="35.3379" lengthAdjust="spacing" font-style="normal" font-size="12" font-family="sans-serif" fill="#666666">JSON]</text>
+   </g>
+   <!--link app to met-->
+   <g id="link_app_met" data-uid="lnk10" data-source-line="1779" data-entity-2="met" data-entity-1="app" class="link">
+    <path stroke="#666666" id="app-to-met" fill="none" d="m348.5,501.6794c0,39.63 0,80.01 0,116.54"/>
+    <polygon id="svg_197" stroke="#666666" points="348.5,626.2194,351.5,618.2194,345.5,618.2194,348.5,626.2194" fill="#666666"/>
+    <text id="svg_198" y="563.0664" x="349.5" textLength="45.3516" lengthAdjust="spacing" font-weight="bold" font-size="12" font-family="sans-serif" fill="#666666">Fetches</text>
+    <text id="svg_199" y="563.0664" x="394.8516" textLength="3.334" lengthAdjust="spacing" font-weight="bold" font-size="12" font-family="sans-serif" fill="#666666"/>
+    <text id="svg_200" y="563.0664" x="398.1855" textLength="45.3516" lengthAdjust="spacing" font-weight="bold" font-size="12" font-family="sans-serif" fill="#666666">weather</text>
+    <text id="svg_201" y="578.1602" x="369.8379" textLength="53.3613" lengthAdjust="spacing" font-weight="bold" font-size="12" font-family="sans-serif" fill="#666666">forecasts</text>
+    <text id="svg_202" y="593.2539" x="352.5146" textLength="42.668" lengthAdjust="spacing" font-style="normal" font-size="12" font-family="sans-serif" fill="#666666">[HTTPS</text>
+    <text id="svg_203" y="593.2539" x="395.1826" textLength="3.334" lengthAdjust="spacing" font-style="italic" font-size="12" font-family="sans-serif" fill="#666666"/>
+    <text id="svg_204" y="593.2539" x="398.5166" textLength="3.334" lengthAdjust="spacing" font-style="normal" font-size="12" font-family="sans-serif" fill="#666666">/</text>
+    <text id="svg_205" y="593.2539" x="401.8506" textLength="3.334" lengthAdjust="spacing" font-style="italic" font-size="12" font-family="sans-serif" fill="#666666"/>
+    <text id="svg_206" y="593.2539" x="405.1846" textLength="35.3379" lengthAdjust="spacing" font-style="normal" font-size="12" font-family="sans-serif" fill="#666666">JSON]</text>
+   </g>
+   <!--link app to coper-->
+   <g id="link_app_coper" data-uid="lnk11" data-source-line="1779" data-entity-2="coper" data-entity-1="app" class="link">
+    <path stroke="#666666" id="app-to-coper" fill="none" d="m414.12,501.6794c39.26,43.11 82.5541,90.6645 116.5241,127.9745"/>
+    <polygon id="svg_207" stroke="#666666" points="536.03,635.5694,532.8624,627.6342,528.4258,631.6736,536.03,635.5694" fill="#666666"/>
+    <text id="svg_208" y="563.0664" x="502.5156" textLength="64.002" lengthAdjust="spacing" font-weight="bold" font-size="12" font-family="sans-serif" fill="#666666">Downloads</text>
+    <text id="svg_209" y="563.0664" x="566.5176" textLength="3.334" lengthAdjust="spacing" font-weight="bold" font-size="12" font-family="sans-serif" fill="#666666"/>
+    <text id="svg_210" y="563.0664" x="569.8516" textLength="20.6777" lengthAdjust="spacing" font-weight="bold" font-size="12" font-family="sans-serif" fill="#666666">env</text>
+    <text id="svg_211" y="563.0664" x="590.5293" textLength="3.334" lengthAdjust="spacing" font-weight="bold" font-size="12" font-family="sans-serif" fill="#666666"/>
+    <text id="svg_212" y="563.0664" x="593.8633" textLength="31.3418" lengthAdjust="spacing" font-weight="bold" font-size="12" font-family="sans-serif" fill="#666666">fields</text>
+    <text id="svg_213" y="578.1602" x="497.5" textLength="98.0449" lengthAdjust="spacing" font-style="normal" font-size="12" font-family="sans-serif" fill="#666666">[copernicusmarine</text>
+    <text id="svg_214" y="578.1602" x="595.5449" textLength="3.334" lengthAdjust="spacing" font-style="italic" font-size="12" font-family="sans-serif" fill="#666666"/>
+    <text id="svg_215" y="578.1602" x="598.8789" textLength="24.6738" lengthAdjust="spacing" font-style="normal" font-size="12" font-family="sans-serif" fill="#666666">SDK</text>
+    <text id="svg_216" y="578.1602" x="623.5527" textLength="3.334" lengthAdjust="spacing" font-style="italic" font-size="12" font-family="sans-serif" fill="#666666"/>
+    <text id="svg_217" y="578.1602" x="626.8867" textLength="3.334" lengthAdjust="spacing" font-style="normal" font-size="12" font-family="sans-serif" fill="#666666">/</text>
+    <text id="svg_218" y="593.2539" x="540.5254" textLength="46.6699" lengthAdjust="spacing" font-style="normal" font-size="12" font-family="sans-serif" fill="#666666">NetCDF]</text>
+    <path stroke="#666666" id="svg_252" fill="none" d="m284.7082,502.51974c-43.13116,43.11 -90.6942,90.6645 -128.01375,127.9745"/>
+    <polygon id="svg_253" stroke="#666666" points="152.83673143098713,634.7290649414062 155.96999810127454,626.7938842773438 160.3585400273514,630.833251953125 152.83673143098713,634.7290649414062 " fill="#666666"/>
+   </g>
+   <!--link dt to dtNote-->
+   <g id="svg_219" data-source-line="299" class="legend">
+    <text id="svg_220" y="775.7051" x="588.1045" textLength="49.7793" lengthAdjust="spacing" font-weight="bold" font-size="14" font-family="sans-serif" fill="#000000">Legend</text>
+    <text id="svg_221" y="775.7051" x="637.8838" textLength="3.8896" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF"/>
+    <rect id="svg_222" y="778.7813" x="588.1045" width="105.8135" height="17.6094" fill="#08427B"/>
+    <text id="svg_223" y="793.3145" x="591.9941" textLength="42.8066" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">person</text>
+    <rect id="svg_224" y="796.3906" x="588.1045" width="105.8135" height="17.6094" fill="#1168BD"/>
+    <text id="svg_225" y="810.9238" x="591.9941" textLength="44.3379" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">system</text>
+    <rect id="svg_226" y="814" x="588.1045" width="105.8135" height="17.6094" fill="#686868"/>
+    <text id="svg_227" y="828.5332" x="591.9941" textLength="96.5029" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">external person</text>
+    <rect id="svg_228" y="831.6094" x="588.1045" width="105.8135" height="17.6094" fill="#999999"/>
+    <text id="svg_229" y="846.1426" x="591.9941" textLength="98.0342" lengthAdjust="spacing" font-size="14" font-family="sans-serif" fill="#FFFFFF">external system</text>
+    <line id="svg_230" stroke="#FFFFFF" y2="761.1719" y1="761.1719" x2="693.918" x1="588.1045"/>
+    <line id="svg_231" stroke="#FFFFFF" y2="778.7813" y1="778.7813" x2="693.918" x1="588.1045"/>
+    <line id="svg_232" stroke="#FFFFFF" y2="796.3906" y1="796.3906" x2="693.918" x1="588.1045"/>
+    <line id="svg_233" stroke="#FFFFFF" y2="814" y1="814" x2="693.918" x1="588.1045"/>
+    <line id="svg_234" stroke="#FFFFFF" y2="831.6094" y1="831.6094" x2="693.918" x1="588.1045"/>
+    <line id="svg_235" stroke="#FFFFFF" y2="849.2188" y1="849.2188" x2="693.918" x1="588.1045"/>
+    <line id="svg_236" stroke="#FFFFFF" y2="849.2188" y1="761.1719" x2="588.1045" x1="588.1045"/>
+    <line id="svg_237" stroke="#FFFFFF" y2="849.2188" y1="761.1719" x2="693.918" x1="693.918"/>
+   </g>
+   <!--SRC=[VLHDRzf04BtxLqnzg021dKOvLBcbG1eQlWIaLKzei3TucsNNsXtZqAgN7Fe3-XFpIpfh326jL0lXzNfctvitR_n6waGLgO2CA7UNSMonZDQIic9LE64JeqbeYXApYNE5cegDwZXAbLp5tOlEr6_TZORn1Xq9orlBhizuf2Zdo20ONdsTt2sMNmQBc-Mm_x4_xZMQ0KbI0heNC7m77PZlE7K3TTubJ9moSFtDs1HwafcWWaKfTH1CXNL6DpojDeHtV0lvtd_CbR72mTLWtePI86N-FUeKc7HU4BzocSp1ccejDN342KeKDeDWJsBvmHGwHRjhfCH7dyB3r1eojCj5s8GV0TIq6vZd77dA6LssCcXJJyu_CASLS1Z38i5MkWALTCn4oQtmh2kkhuXBlJKF7F5vC1_CEkT0vb0BAC5ATrBf27KY8AutI6vU7hgJvwUdkbvVtSzZVVr7QZpmiWryXRUyIf4mOqcfOd8r7J1j26S2rVvCJoTZD6DbmbBueDmuIT9e1_V6mjZOKgmbQYYHBL01dg1jn1uCmb5_4MbpW3YvmfSZHeA4iKQPTOKsq8wzuikkvV688k4Q7JIKIT3JE6p5vz5Pyo_qnEHUKyRe-fMMIU5WX5PgSI0HJXB1o9R_KEsSTF3sY0AD4hV2jI4fhEKnS4r01sD1tTvrPPkPKBKVeJ82LBvqllKtYyLqpYrPMLDwgpQhu3ggxa5uBIZ9zjvzaVKq-zDyCdwTMWjwJFr7cV-drug4FLDgPJ1r8FGMxgLGQPMP77NQL3B1l7VB1-rhzYLhm-rW5L8Qyue7eTMQQD4fSSTd5xcIUXsrMZm6X72lk7R8CvRLj_Fvrsz8wvaoMktQm7x0X8ggZx32vC5RdHLtGZbWSp4tQOtU-4yGG_4N06wjfEyCmaisBQe86kTdxzutURouT_n3YEC3YiimDMKSUoGE1k99ZWB1dlPbyES9TyjPDUpxSfh17m00]-->
+  </g>
+ </g>
+</svg>

@@ -1,0 +1,154 @@
+@startuml
+
+skinparam backgroundColor #FEFEFE
+skinparam shadowing false
+skinparam defaultFontName "Segoe UI"
+skinparam defaultFontSize 11
+skinparam linetype ortho
+
+skinparam component {
+  BackgroundColor #FFFFFF
+  BorderColor #555555
+}
+skinparam package {
+  BackgroundColor #F8F9FB
+  BorderColor #999999
+  FontStyle bold
+}
+skinparam interface {
+  BackgroundColor #FFF8E1
+  BorderColor #F9A825
+}
+skinparam database {
+  BackgroundColor #FFF3E0
+  BorderColor #E65100
+}
+
+title Digital Twin Prototype - UML Component Diagram\n//Components, provided/required interfaces, and the physical/digital coupling boundary//
+
+' =========================================================================
+'  Physical world (observed entities - not software)
+' =========================================================================
+package "Physical World (observed)" as phys #FFEBEE {
+  [Vessels in Oslo Fjord\n(AIS transponders)] as vessels
+  [Sea & atmosphere\n(in-situ + remote sensors)] as envWorld
+}
+
+' =========================================================================
+'  External services (data providers)
+' =========================================================================
+package "External Services" as ext #F3E5F5 {
+  () "IAisFeed" as IAis
+  () "IWeatherForecast" as IWx
+  () "IEnvFields" as IEnv
+
+  [Kystdatahuset]     -down- IAis
+  [MET.no]            -down- IWx
+  [Copernicus Marine] -down- IEnv
+}
+
+vessels    --> [Kystdatahuset]     : AIS broadcast
+envWorld   --> [MET.no]            : observations
+envWorld   --> [Copernicus Marine] : assimilation
+
+' =========================================================================
+'  app container  (Dash, port 8050)
+' =========================================================================
+package "app container  (Dash, :8050)" as appC #E3F2FD {
+
+  () "IDashUI" as IUI
+
+  [map_view\n<<layout>>] as layout
+  [map_callbacks\n<<controller>>] as cb
+
+  layout -up- IUI
+
+  package "API clients" as apiPkg {
+    [ais_api]
+    [ais_hist_api]
+    [weather_api]
+    [visir_api\n<<HTTP client>>] as visirC
+  }
+
+  package "Route Pipeline\n<<background thread>>" as pipePkg {
+    [route_job]
+    [namelist_writer]
+    [env_data_downloader]
+  }
+
+  package "Geo Utils" as utilPkg {
+    [density]
+    [visir_layers]
+  }
+
+  cb --> ais_api          : poll (30 s)
+  cb --> ais_hist_api     : on draw
+  cb --> weather_api      : poll (30 s)
+  cb --> route_job        : submit job
+  cb --> density          : compute grid
+  cb ..> IUI              : Dash callbacks
+
+  route_job --> namelist_writer
+  route_job --> env_data_downloader
+  route_job --> visirC
+}
+
+' --- Browser binds to UI ---
+[Browser\n(dash-leaflet)] as browser
+browser --( IUI : HTTP :8050
+
+' --- App clients bind to external interfaces ---
+ais_api              --( IAis
+ais_hist_api         --( IAis
+weather_api          --( IWx
+env_data_downloader  --( IEnv
+
+' =========================================================================
+'  visir container  (Flask + conda, port 5050)
+' =========================================================================
+package "visir container  (Flask + conda, :5050)" as visC #E8F5E9 {
+
+  () "IRoutingService" as IRoute
+
+  [visir_runner\n<<Flask wrapper>>] as runner
+  [MAIN_Campi\n<<env-field processing>>] as campi
+  [MAIN_Tracce\n<<route computation>>] as tracce
+
+  runner -up- IRoute
+  runner --> campi  : POST /run-campi
+  runner --> tracce : POST /run
+}
+
+visirC --( IRoute : HTTP :5050
+
+' =========================================================================
+'  Shared Docker volumes  (file-based contracts between containers)
+' =========================================================================
+package "Shared Docker Volumes" as vols #FFF3E0 {
+  () "INamelistYAML\n(__namelist/)"          as IYaml
+  () "IEnvFieldsNetCDF\n(__data/envFields/)" as INetCDF
+  database "__product/\n(CSV route outputs)"  as products
+}
+
+namelist_writer      --( IYaml   : write
+env_data_downloader  --( INetCDF : write
+campi                --( IYaml   : read
+campi                --( INetCDF : read
+tracce               --( IYaml   : read
+tracce               --> products : write
+runner               ..> products : read & serialise to JSON
+
+' =========================================================================
+'  Coupling annotation - the "twin" argument
+' =========================================================================
+note right of phys
+  **Coupling is one-way (physical → digital).**
+  All required interfaces on the digital side
+  consume external data. No provided interface
+  on the digital side acts back on the physical
+  world. Per Kritzinger et al. (2018) this
+  satisfies a //digital shadow//, not a
+  //digital twin//.
+end note
+
+@enduml

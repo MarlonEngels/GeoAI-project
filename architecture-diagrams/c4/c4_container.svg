@@ -1,0 +1,280 @@
+<svg width="850" height="1074" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" data-diagram-type="DESCRIPTION" preserveAspectRatio="none" version="1.1" zoomAndPan="magnify">
+ <title>C4 L2 - Containers: Docker Compose topology</title>
+
+ <g>
+  <title>Layer 1</title>
+  <g id="svg_1">
+   <g class="title" data-source-line="47" id="svg_2">
+    <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="310.3721" x="277.56883" y="34.14858" id="svg_3">C4 L2 - Containers: Docker Compose topology</text>
+   </g>
+   <!--cluster dt-->
+   <g class="cluster" data-entity="dt" data-source-line="1666" data-uid="ent0003" id="cluster_dt">
+    <rect fill="none" height="838" width="445" x="7" y="215.6094" stroke="#444444" stroke-dasharray="7,7" id="svg_4"/>
+    <text fill="#444444" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="312.0313" x="73.4844" y="234.2188" id="svg_5">Digital Twin Prototype (docker-compose)</text>
+   </g>
+   <!--entity browser-->
+   <g class="entity" data-entity="browser" data-source-line="76" data-uid="ent0004" id="entity_browser">
+    <rect fill="#438DD5" height="108.0469" width="213.7373" x="198" y="269.6094" stroke="#3C7FC0" stroke-width="0.5" id="svg_7"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="64.0234" x="262.6343" y="296.2188" id="svg_8">Browser</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="4.4453" x="326.6577" y="296.2188" id="svg_9"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="16" x="331.103" y="296.2188" id="svg_10">UI</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="normal" lengthAdjust="spacing" textLength="65.373" x="228.5063" y="312.1914" id="svg_11">[dash-leaflet</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="3.334" x="293.8794" y="312.1914" id="svg_12"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="normal" lengthAdjust="spacing" textLength="18" x="297.2134" y="312.1914" id="svg_13">(JS</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="3.334" x="315.2134" y="312.1914" id="svg_14"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="normal" lengthAdjust="spacing" textLength="9.3398" x="318.5474" y="312.1914" id="svg_15">in</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="3.334" x="327.8872" y="312.1914" id="svg_16"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="normal" lengthAdjust="spacing" textLength="50.0098" x="331.2212" y="312.1914" id="svg_17">browser)]</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="3.8896" x="302.9238" y="329.3613" id="svg_18"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="31.124" x="208" y="346.9707" id="svg_19">Map,</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="3.8896" x="239.124" y="346.9707" id="svg_20"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="30.3447" x="243.0137" y="346.9707" id="svg_21">layer</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="3.8896" x="273.3584" y="346.9707" id="svg_22"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="52.9102" x="277.248" y="346.9707" id="svg_23">controls,</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="3.8896" x="330.1582" y="346.9707" id="svg_24"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="31.9102" x="334.0479" y="346.9707" id="svg_25">route</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="3.8896" x="365.958" y="346.9707" id="svg_26"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="31.8896" x="369.8477" y="346.9707" id="svg_27">form,</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="54.4688" x="256.6172" y="364.5801" id="svg_28">progress</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="3.8896" x="311.0859" y="364.5801" id="svg_29"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="38.1445" x="314.9756" y="364.5801" id="svg_30">panel.</text>
+   </g>
+   <!--entity appC-->
+   <g class="entity" data-entity="appC" data-source-line="76" data-uid="ent0005" id="entity_appC">
+    <rect fill="#438DD5" height="108.0469" width="216.082" x="210" y="469.6094" stroke="#3C7FC0" stroke-width="0.5" id="svg_31"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="28.4453" x="303.8184" y="496.2188" id="svg_32">app</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="normal" lengthAdjust="spacing" textLength="40.6934" x="235.998" y="512.1914" id="svg_33">[Python</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="3.334" x="276.6914" y="512.1914" id="svg_34"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="normal" lengthAdjust="spacing" textLength="6.6738" x="280.0254" y="512.1914" id="svg_35">3</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="3.334" x="286.6992" y="512.1914" id="svg_36"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="normal" lengthAdjust="spacing" textLength="3.334" x="290.0332" y="512.1914" id="svg_37">/</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="3.334" x="293.3672" y="512.1914" id="svg_38"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="normal" lengthAdjust="spacing" textLength="28.0137" x="296.7012" y="512.1914" id="svg_39">Dash</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="3.334" x="324.7148" y="512.1914" id="svg_40"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="normal" lengthAdjust="spacing" textLength="3.334" x="328.0488" y="512.1914" id="svg_41">/</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="3.334" x="331.3828" y="512.1914" id="svg_42"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="normal" lengthAdjust="spacing" textLength="28.6699" x="334.7168" y="512.1914" id="svg_43">Flask</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="3.334" x="363.3867" y="512.1914" id="svg_44"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="normal" lengthAdjust="spacing" textLength="33.3633" x="366.7207" y="512.1914" id="svg_45">:8050]</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="3.8896" x="316.0962" y="529.3613" id="svg_46"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43.5723" x="220" y="546.9707" id="svg_47">Serves</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="3.8896" x="263.5723" y="546.9707" id="svg_48"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="19.4619" x="267.4619" y="546.9707" id="svg_49">the</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="3.8896" x="286.9238" y="546.9707" id="svg_50"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="17.8896" x="290.8135" y="546.9707" id="svg_51">UI,</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="3.8896" x="308.7031" y="546.9707" id="svg_52"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="77.0342" x="312.5928" y="546.9707" id="svg_53">orchestrates</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="3.8896" x="389.627" y="546.9707" id="svg_54"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="22.5654" x="393.5166" y="546.9707" id="svg_55">API</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="28.0068" x="232.8174" y="564.5801" id="svg_56">calls</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="3.8896" x="260.8242" y="564.5801" id="svg_57"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="23.3584" x="264.7139" y="564.5801" id="svg_58">and</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="3.8896" x="288.0723" y="564.5801" id="svg_59"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="19.4619" x="291.9619" y="564.5801" id="svg_60">the</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="3.8896" x="311.4238" y="564.5801" id="svg_61"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="31.9102" x="315.3135" y="564.5801" id="svg_62">route</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="3.8896" x="347.2236" y="564.5801" id="svg_63"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="52.1514" x="351.1133" y="564.5801" id="svg_64">pipeline.</text>
+   </g>
+   <!--entity visirC-->
+   <g class="entity" data-entity="visirC" data-source-line="76" data-uid="ent0006" id="entity_visirC">
+    <rect fill="#438DD5" height="125.6563" width="216.0547" x="23" y="684.6094" stroke="#3C7FC0" stroke-width="0.5" id="svg_65"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="32.9141" x="114.5703" y="711.2188" id="svg_66">visir</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="normal" lengthAdjust="spacing" textLength="40.6934" x="41.6396" y="727.1914" id="svg_67">[Python</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="3.334" x="82.333" y="727.1914" id="svg_68"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="normal" lengthAdjust="spacing" textLength="16.6816" x="85.667" y="727.1914" id="svg_69">3.7</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="3.334" x="102.3486" y="727.1914" id="svg_70"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="normal" lengthAdjust="spacing" textLength="3.334" x="105.6826" y="727.1914" id="svg_71">/</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="3.334" x="109.0166" y="727.1914" id="svg_72"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="normal" lengthAdjust="spacing" textLength="28.6699" x="112.3506" y="727.1914" id="svg_73">Flask</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="3.334" x="141.0205" y="727.1914" id="svg_74"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="normal" lengthAdjust="spacing" textLength="3.334" x="144.3545" y="727.1914" id="svg_75">/</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="3.334" x="147.6885" y="727.1914" id="svg_76"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="normal" lengthAdjust="spacing" textLength="32.6953" x="151.0225" y="727.1914" id="svg_77">conda</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="3.334" x="183.7178" y="727.1914" id="svg_78"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="normal" lengthAdjust="spacing" textLength="33.3633" x="187.0518" y="727.1914" id="svg_79">:5050]</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="3.8896" x="129.0825" y="744.3613" id="svg_80"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="40.4482" x="36.5103" y="761.9707" id="svg_81">Wraps</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="3.8896" x="76.9585" y="761.9707" id="svg_82"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="49.0137" x="80.8481" y="761.9707" id="svg_83">VISIR-2</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="3.8896" x="129.8618" y="761.9707" id="svg_84"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="91.793" x="133.7515" y="761.9707" id="svg_85">(MAIN_Campi,</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="94.124" x="33" y="779.5801" id="svg_86">MAIN_Tracce).</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="3.8896" x="127.124" y="779.5801" id="svg_87"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="89.4893" x="131.0137" y="779.5801" id="svg_88">Thread-locked</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="3.8896" x="220.5029" y="779.5801" id="svg_89"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.6621" x="224.3926" y="779.5801" id="svg_90">-</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="19.4619" x="84.3345" y="797.1895" id="svg_91">not</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="3.8896" x="103.7964" y="797.1895" id="svg_92"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="70.0342" x="107.686" y="797.1895" id="svg_93">concurrent.</text>
+   </g>
+   <!--entity vols-->
+   <g class="entity" data-entity="vols" data-source-line="80" data-uid="ent0007" id="entity_vols">
+    <path d="m149.5,912.6094c0,-10 91.3032,-10 91.3032,-10c0,0 91.3032,0 91.3032,10l0,114.6562c0,10 -91.3032,10 -91.3032,10c0,0 -91.3032,0 -91.3032,-10l0,-114.6562" fill="#438DD5" stroke="#3C7FC0" stroke-width="0.5" id="svg_94"/>
+    <path d="m149.5,912.6094c0,10 91.3032,10 91.3032,10c0,0 91.3032,0 91.3032,-10" fill="none" stroke="#3C7FC0" stroke-width="0.5" id="svg_95"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="54.2422" x="179.0024" y="943.2188" id="svg_96">Shared</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="4.4453" x="233.2446" y="943.2188" id="svg_97"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="64.9141" x="237.6899" y="943.2188" id="svg_98">volumes</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="normal" lengthAdjust="spacing" textLength="27.3516" x="204.1177" y="959.1914" id="svg_99">[Bind</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="3.334" x="231.4692" y="959.1914" id="svg_100"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="normal" lengthAdjust="spacing" textLength="42.6855" x="234.8032" y="959.1914" id="svg_101">mounts]</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="3.8896" x="238.8584" y="976.3613" id="svg_102"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" text-decoration="underline" textLength="56.0205" x="185.1792" y="993.9707" id="svg_103">namelist/</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" text-decoration="underline" textLength="3.8896" x="241.1997" y="993.9707" id="svg_104"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" text-decoration="underline" textLength="51.3379" x="245.0894" y="993.9707" id="svg_105">(YAML),</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="94.9443" x="159.5" y="1011.5801" id="svg_106">data/envFields/</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="3.8896" x="254.4443" y="1011.5801" id="svg_107"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="63.7725" x="258.334" y="1011.5801" id="svg_108">(NetCDF),</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="66.1582" x="184.7793" y="1029.1895" id="svg_109">__product/</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="3.8896" x="250.9375" y="1029.1895" id="svg_110"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42" x="254.8271" y="1029.1895" id="svg_111">(CSV).</text>
+   </g>
+   <!--entity user-->
+   <g class="entity" data-entity="user" data-source-line="379" data-uid="ent0002" id="entity_user">
+    <rect fill="#08427B" height="91.8173" width="110.7109" x="249.5" y="56.18632" stroke="#073B6F" stroke-width="0.5" id="svg_112"/>
+    <image height="52" width="52" x="279.0093" xlink:href="data:image/png;base64,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" y="66.18632" id="svg_113"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="4.4453" x="310.1875" y="134.48802" id="svg_115"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="35.5781" x="287.6328" y="134.48802" id="svg_116">User</text>
+   </g>
+   <!--entity kyst-->
+   <g class="entity" data-entity="kyst" data-source-line="413" data-uid="ent0008" id="entity_kyst">
+    <rect fill="#999999" height="40.125" width="192.4844" x="603.75999" y="431.5375" stroke="#8A8A8A" stroke-width="0.5" id="svg_117"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="110.25" x="613.75999" y="458.1469" id="svg_118">Kystdatahuset</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="4.4453" x="724.00999" y="458.1469" id="svg_119"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="26.6719" x="728.45529" y="458.1469" id="svg_120">AIS</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="4.4453" x="755.12719" y="458.1469" id="svg_121"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="26.6719" x="759.57249" y="458.1469" id="svg_122">API</text>
+   </g>
+   <!--entity met-->
+   <g class="entity" data-entity="met" data-source-line="413" data-uid="ent0009" id="entity_met">
+    <rect fill="#999999" height="40.125" width="108.8828" x="645.56" y="503.5375" stroke="#8A8A8A" stroke-width="0.5" id="svg_123"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="57.7656" x="655.56" y="530.1469" id="svg_124">MET.no</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="4.4453" x="713.3256" y="530.1469" id="svg_125"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="26.6719" x="717.7709" y="530.1469" id="svg_126">API</text>
+   </g>
+   <!--entity coper-->
+   <g class="entity" data-entity="coper" data-source-line="413" data-uid="ent0010" id="entity_coper">
+    <rect fill="#999999" height="40.125" width="164.0313" x="617.98" y="575.5375" stroke="#8A8A8A" stroke-width="0.5" id="svg_127"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="88.0156" x="627.98" y="602.1469" id="svg_128">Copernicus</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="4.4453" x="715.9956" y="602.1469" id="svg_129"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="51.5703" x="720.4409" y="602.1469" id="svg_130">Marine</text>
+   </g>
+   <!--link user to browser-->
+   <g class="link" data-entity-1="user" data-entity-2="browser" data-source-line="1779" data-uid="lnk11" id="link_user_browser">
+    <path d="m305,150.2794c0,34.2123 0,75.86442 0,111.9593" fill="none" id="user-to-browser" stroke="#666666"/>
+    <polygon fill="#666666" points="305,269.4793997604738 308,262.2387014229189 302,262.2387014229189 305,269.4793997604738 " stroke="#666666" id="svg_131"/>
+   </g>
+   <!--link browser to appC-->
+   <g class="link" data-entity-1="browser" data-entity-2="appC" data-source-line="1779" data-uid="lnk12" id="link_browser_appC">
+    <path d="m308.48,377.6694c1.87,28.41 3.6349,55.3172 5.5049,83.7472" fill="none" id="browser-to-appC" stroke="#666666"/>
+    <polygon fill="#666666" points="314.51,469.3994,316.9785,461.2197,310.9914,461.6135,314.51,469.3994" stroke="#666666" id="svg_134"/>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="29.3438" x="314" y="421.0664" id="svg_135">Dash</text>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="3.334" x="343.3438" y="421.0664" id="svg_136"/>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="54.041" x="346.6777" y="421.0664" id="svg_137">callbacks</text>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="3.334" x="400.7188" y="421.0664" id="svg_138"/>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="3.334" x="404.0527" y="421.0664" id="svg_139">/</text>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="3.334" x="407.3867" y="421.0664" id="svg_140"/>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="32.6777" x="410.7207" y="421.0664" id="svg_141">JSON</text>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-style="normal" lengthAdjust="spacing" textLength="34.6641" x="343.0186" y="436.1602" id="svg_142">[HTTP</text>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="3.334" x="377.6826" y="436.1602" id="svg_143"/>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-style="normal" lengthAdjust="spacing" textLength="33.3633" x="381.0166" y="436.1602" id="svg_144">:8050]</text>
+   </g>
+   <!--link appC to kyst-->
+   <g class="link" data-entity-1="appC" data-entity-2="kyst" data-source-line="1779" data-uid="lnk13" id="link_appC_kyst">
+    <path d="m426.08,495c63.92,-25 113.92,-40 169.68,-43.4" fill="none" id="appC-to-kyst" stroke="#666666"/>
+    <polygon fill="#666666" points="603.76,451.6,595.76,448.6,595.76,454.6" stroke="#666666" id="svg_145"/>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" x="461.95652" y="432.43479" id="svg_146">Poll positions + history</text>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-style="normal" x="503.04347" y="448.30436" id="svg_147">[HTTPS]</text>
+   </g>
+   <!--link appC to met-->
+   <g class="link" data-entity-1="appC" data-entity-2="met" data-source-line="1779" data-uid="lnk14" id="link_appC_met">
+    <path d="m426.08,523.6l211.48,0" fill="none" id="appC-to-met" stroke="#666666"/>
+    <polygon fill="#666666" points="645.56,523.6,637.56,520.6,637.56,526.6" stroke="#666666" id="svg_148"/>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" x="460" y="517" id="svg_149">Poll forecasts (30 s)</text>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-style="normal" x="495" y="537" id="svg_150">[HTTPS]</text>
+   </g>
+   <!--link appC to coper-->
+   <g class="link" data-entity-1="appC" data-entity-2="coper" data-source-line="1779" data-uid="lnk15" id="link_appC_coper">
+    <path d="m426.08,552c63.92,23 128.92,36 183.9,43.6" fill="none" id="appC-to-coper" stroke="#666666"/>
+    <polygon fill="#666666" points="617.98,595.6,609.98,592.6,609.98,598.6" stroke="#666666" id="svg_151"/>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" x="447.71198" y="609.5652" id="svg_152" transform="matrix(0.958093, 0, 0, 1, 25.8328, 0)">Subset env fields on demand</text>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-style="normal" x="481.73912" y="627.04346" id="svg_153">[copernicusmarine]</text>
+   </g>
+   <!--link appC to visirC-->
+   <g class="link" data-entity-1="appC" data-entity-2="visirC" data-source-line="1779" data-uid="lnk16" id="link_appC_visirC">
+    <path d="m209.76,574.5694c-13.34,9.54 -25.77,20.53 -35.76,33.04c-17.5,21.91 -26.0541,43.1682 -32.2241,69.0382" fill="none" id="appC-to-visirC" stroke="#666666"/>
+    <polygon fill="#666666" points="139.92,684.4294,144.6941,677.3436,138.8578,675.9517,139.92,684.4294" stroke="#666666" id="svg_154"/>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="23.3262" x="175" y="628.5664" id="svg_155">Run</text>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="3.334" x="198.3262" y="628.5664" id="svg_156"/>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="34.6816" x="201.6602" y="628.5664" id="svg_157">campi</text>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="3.334" x="236.3418" y="628.5664" id="svg_158"/>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="3.334" x="239.6758" y="628.5664" id="svg_159">/</text>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="3.334" x="243.0098" y="628.5664" id="svg_160"/>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="19.3301" x="246.3438" y="628.5664" id="svg_161">run</text>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="3.334" x="265.6738" y="628.5664" id="svg_162"/>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="30" x="269.0078" y="628.5664" id="svg_163">route</text>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-style="normal" lengthAdjust="spacing" textLength="34.6641" x="180.3203" y="643.6602" id="svg_164">[HTTP</text>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="3.334" x="214.9844" y="643.6602" id="svg_165"/>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-style="normal" lengthAdjust="spacing" textLength="30.0293" x="218.3184" y="643.6602" id="svg_166">:5050</text>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="3.334" x="248.3477" y="643.6602" id="svg_167"/>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-style="normal" lengthAdjust="spacing" textLength="3.334" x="251.6816" y="643.6602" id="svg_168">/</text>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="3.334" x="255.0156" y="643.6602" id="svg_169"/>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-style="normal" lengthAdjust="spacing" textLength="35.3379" x="258.3496" y="643.6602" id="svg_170">JSON]</text>
+   </g>
+   <!--link appC to vols-->
+   <g class="link" data-entity-1="appC" data-entity-2="vols" data-source-line="1779" data-uid="lnk17" id="link_appC_vols">
+    <path d="m319.3,577.7694c1.45,83.55 1.72,241.56 -15.3,294.84c-3.23,10.1 -3.9784,13.1427 -9.2284,22.7327" fill="none" id="appC-to-vols" stroke="#666666"/>
+    <polygon fill="#666666" points="290.93,902.3594,297.4031,896.7827,292.1401,893.9015,290.93,902.3594" stroke="#666666" id="svg_171"/>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="30" x="321" y="752.5664" id="svg_172">Write</text>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="3.334" x="351" y="752.5664" id="svg_173"/>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="33.9961" x="354.334" y="752.5664" id="svg_174">YAML</text>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="3.334" x="388.3301" y="752.5664" id="svg_175"/>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="7.0078" x="391.6641" y="752.5664" id="svg_176">+</text>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="3.334" x="398.6719" y="752.5664" id="svg_177"/>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="43.998" x="402.0059" y="752.5664" id="svg_178">NetCDF</text>
+   </g>
+   <!--link visirC to vols-->
+   <g class="link" data-entity-1="visirC" data-entity-2="vols" data-source-line="1779" data-uid="lnk18" id="link_visirC_vols">
+    <path d="m146.82,810.6894c6.27,20.28 14.35,42.56 24.18,61.92c5.11,10.06 6.793,13.5399 13.243,23.2799" fill="none" id="visirC-to-vols" stroke="#666666"/>
+    <polygon fill="#666666" points="188.66,902.5594,186.7442,894.2329,181.7417,897.5457,188.66,902.5594" stroke="#666666" id="svg_179"/>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="29.3438" x="172" y="854.0664" id="svg_180">Read</text>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="3.334" x="201.3438" y="854.0664" id="svg_181"/>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="33.9961" x="204.6777" y="854.0664" id="svg_182">YAML</text>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="3.334" x="238.6738" y="854.0664" id="svg_183"/>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="7.0078" x="242.0078" y="854.0664" id="svg_184">+</text>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="3.334" x="249.0156" y="854.0664" id="svg_185"/>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="47.332" x="252.3496" y="854.0664" id="svg_186">NetCDF,</text>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="28.0078" x="207.833" y="869.1602" id="svg_187">write</text>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="3.334" x="235.8408" y="869.1602" id="svg_188"/>
+    <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="24.6738" x="239.1748" y="869.1602" id="svg_189">CSV</text>
+   </g>
+   <g class="legend" data-source-line="61" id="svg_190">
+    <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="49.7793" x="560.00001" y="884.53319" id="svg_191">Legend</text>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="3.8896" x="609.77931" y="884.53319" id="svg_192"/>
+    <rect fill="#08427B" height="17.6094" width="119.0684" x="560.00001" y="887.60939" id="svg_193"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42.8066" x="563.88961" y="902.14259" id="svg_194">person</text>
+    <rect fill="#1168BD" height="17.6094" width="119.0684" x="560.00001" y="905.21869" id="svg_195"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="44.3379" x="563.88961" y="919.75189" id="svg_196">system</text>
+    <rect fill="#438DD5" height="17.6094" width="119.0684" x="560.00001" y="922.82809" id="svg_197"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="57.5928" x="563.88961" y="937.36129" id="svg_198">container</text>
+    <rect fill="#686868" height="17.6094" width="119.0684" x="560.00001" y="940.43749" id="svg_199"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="96.5029" x="563.88961" y="954.97069" id="svg_200">external person</text>
+    <rect fill="#999999" height="17.6094" width="119.0684" x="560.00001" y="958.04689" id="svg_201"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="98.0342" x="563.88961" y="972.58009" id="svg_202">external system</text>
+    <rect fill="#B3B3B3" height="17.6094" width="119.0684" x="560.00001" y="975.65619" id="svg_203"/>
+    <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="111.2891" x="563.88961" y="990.18939" id="svg_204">external container</text>
+    <line x1="560.00001" x2="679.06841" y1="869.99999" y2="869.99999" stroke="#FFFFFF" id="svg_205"/>
+    <line x1="560.00001" x2="679.06841" y1="887.60939" y2="887.60939" stroke="#FFFFFF" id="svg_206"/>
+    <line x1="560.00001" x2="679.06841" y1="905.21869" y2="905.21869" stroke="#FFFFFF" id="svg_207"/>
+    <line x1="560.00001" x2="679.06841" y1="922.82809" y2="922.82809" stroke="#FFFFFF" id="svg_208"/>
+    <line x1="560.00001" x2="679.06841" y1="940.43749" y2="940.43749" stroke="#FFFFFF" id="svg_209"/>
+    <line x1="560.00001" x2="679.06841" y1="958.04689" y2="958.04689" stroke="#FFFFFF" id="svg_210"/>
+    <line x1="560.00001" x2="679.06841" y1="975.65619" y2="975.65619" stroke="#FFFFFF" id="svg_211"/>
+    <line x1="560.00001" x2="679.06841" y1="993.26559" y2="993.26559" stroke="#FFFFFF" id="svg_212"/>
+    <line x1="560.00001" x2="560.00001" y1="869.99999" y2="993.26559" stroke="#FFFFFF" id="svg_213"/>
+    <line x1="679.06841" x2="679.06841" y1="869.99999" y2="993.26559" stroke="#FFFFFF" id="svg_214"/>
+   </g>
+   <!--SRC=[TLHDSzem4BtpAxOwsLE3C_cOThWH80qf40PCCZbvXAt46cJ98ycXJAV_lIjXd92qldWjxTE-jthhBrnceiuP5DPMfX_7ckvwBzmMzQOsJ6TAMYPjBrDbN0agRLsAhh6vu9juUDbTkANrR1gNr5YcSIaT8e9ooNIlmjnEPpfukbydwUCakKsdun_Z-IW8EvPRmM1u2TDpw48BCNqOgMpBD2wLbJ8ChAgKK2_xJcU1sqe6ZbG492cOuGRM-4N2JcUrn_9bUgrgcLEz3tABEIEEEgY0PCSbBBIookuh1a7kItIpGucGXF2x0syaWerMEry5W5mVObXFYFls3ycfARg2qMV1B0HtAy3p6r3Of94PhI8GT8zOrqEjX8b0gzeoU5QwZA3IwaKpOw2YaeaUgdZFWLRLi2b8C7uhVkImsDj2IRY064P81rytWfejzB-VNPqTqicAwLTcm1OC-KUWT8PTivfQN1mi9f1H8GnGcVkK0xcALqmWXO-4NhdX-a29-FW3fPPGxrlB9NRISmhzgmCdygXfPU1Xifeik-SGp0QJUJgaPSKZy76YQPQni0T9eHdDkyBTL8uEaSgwix9QQ-V6KswZJV3gs-ir5rGZ11Vgafcc4TSSDPPe3ci-TR8LaAQIbgZTs1Y2fy5i6aQGfZcrD6RozOOpaHlScJCx7DtuFRp2lCvS-d3r43fMVrehZd_PO8iXbYC_yUtEAT2y5WQJbUi-PhzBBPdrVfkDavvKd_SpLNdV3zrRygmsCACQrJltBvbevWAVrhq4X-C_SibjaYnM27N85j1wZdX7ENTiQBOrU8ztg_kvFyeZ6vCrbHjO8nQDe8G0d2nkkP86laA1BLLw_uO_LcwGZVO6YTF1CloR60Wkpi0S1-gVoAOhUElrnhKMxmcU_KK1MZ5d9NgRH2HhcrQUzEme-EXjigmboaO_ecIDiH-9uqGVb3ih7niIdfxIU11Tpd6Gd8DG_C4kJUgnK9kwH9UVPaQmyt1q58B-0W00]-->
+  </g>
+ </g>
+</svg>
